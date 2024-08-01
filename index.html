@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>cuetimer</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<h1>CueTimer</h1>
+<div id="buttons">
+    <button id="timerBtn" onclick="showContent('timer')">I want a timer</button>
+    <button id="cueBtn" onclick="showContent('cues')">I want exercise cues</button>
+    <button id="bothBtn" onclick="showContent('both')">I want both</button>
+</div>
+
+<div id="timer" class="content">
+    <h2>Timer</h2>
+    <!-- Timer content goes here -->
+    <button onclick="goBack()">Back</button>
+</div>
+
+<div id="cues" class="content">
+    <h2>How many exercises do you have?<input type="number" min="1" id="rows"></h2>
+    <div id="errorContainer" class="error"></div>
+    <div id="tableContainer"></div>
+    <button type="button" onclick="createTable()">Refresh table</button>
+    <button onclick="startWorkout()">Start workout</button>
+    <button onclick="goBack()">Back</button>
+</div>
+
+<div id="both" class="content">
+    <h2>Both</h2>
+    <!-- Both timer and exercise cues content goes here -->
+    <button onclick="goBack()">Back</button>
+</div>
+
+<script src="timer.js"></script>
+<script src="cues.js"></script>
+<script>
+    function showContent(id, scriptSrc) {
+        document.querySelectorAll('.content').forEach(div => div.style.display = 'none');
+        document.getElementById(id).style.display = 'block';
+        document.getElementById('buttons').style.display = 'none';
+    }
+
+    function goBack() {
+        document.querySelectorAll('.content').forEach(div => div.style.display = 'none');
+        document.getElementById('buttons').style.display = 'block';
+    }
+</script>
+</body>
+</html>
