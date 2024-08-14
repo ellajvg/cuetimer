@@ -10,15 +10,23 @@ h1, h2, h3, h4, h5, h6 {
     display: none;
 }
 
-.grid-container {
-    display: grid;
-    grid-template-columns: repeat(50, 1fr);
-    gap: 10px;
-    max-width: 100%;
+.flex-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
 }
 
-.grid-item {
-    border: 1px solid #000;
-    padding: 10px;
-    text-align: center;
+.half-content {
+    width: 48%; /* Adjust width as needed */
 }
+
+
+#timer, #cues {
+    display: none; /*Hide the individual content divs by default*/
+}
+
+
+#both .half-content {
+    display: block;
+}
+

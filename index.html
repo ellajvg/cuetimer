@@ -16,8 +16,29 @@
 
 <div id="timer" class="content">
     <h2>Timer</h2>
-    <!-- Timer content goes here -->
-    <button onclick="goBack()">Back</button>
+    <h3>Work</h3>
+    <div id="workContainer">
+        <table>
+            <tbody id="workTableBody">
+            </tbody>
+        </table>
+    </div>
+    <button onclick="addWork()">+ add work period</button>
+    <button onclick="removeWork()">- remove work period</button>
+    <div id="exerciseRestHeader"> <h3> Rest </h3> </div>
+    <div id="restDropdownContainer"></div>
+    <div id="roundHeader"> <h3> Rounds </h3> </div>
+    <div id="roundDropdownContainer"></div>
+    <div id="roundRestHeader" style="display: none;"> <h3> Rest between rounds </h3> </div>
+    <div id="roundRestDropdownContainer" style="display: none;"></div>
+    <button id="pauseResumeBtn" style="display: none;">Pause</button>
+    <div id="workOrRest"></div>
+    <div id="countdown"></div>
+</div>
+
+<div id="timerSpecific" class="content">
+    <button onclick="startTimerWorkout()">Start workout</button>
+    <button onclick="goBack()">Back to options</button>
 </div>
 
 <div id="cues" class="content">
@@ -37,17 +58,28 @@
         </table>
     </div>
     <button onclick="addRows()">Add more rows</button>
+    <h3>Repeat</h3>
+    <div id="repeatDropdownContainer"></div>
     <div id="currentExerciseContainer"></div>
     <div id="nextExerciseContainer"></div>
-    <button onclick="goBack()">Back</button>
-    <button onclick="startWorkout('tableContainer')">Start workout</button>
+</div>
+
+<div id="cueSpecific" class="content">
+    <button onclick="goBack()">Back to options</button>
+    <button onclick="startCueWorkout()">Start workout</button>
     <button id="completeBtn" style="display: none;">Exercise completed</button>
+    <button id="previousExerciseBtn" style="display: none;">Previous exercise</button>
 </div>
 
 <div id="both" class="content">
-    <h2>Both</h2>
-    <!-- Both timer and exercise cues content goes here -->
-    <button onclick="goBack()">Back</button>
+    <!--
+    <div class="flex-container">
+        <div id="cuesInBoth" class="half-content"></div>
+        <div id="timerInBoth" class="half-content"></div>
+    </div>
+    -->
+    <button onclick="startBothWorkout()">Start workout</button>
+    <button onclick="goBack()">Back to options</button>
 </div>
 
 <script src="timer.js"></script>
