@@ -1,3 +1,4 @@
+//hi
 document.addEventListener('DOMContentLoaded', function() {
     const restSelectContainer = document.getElementById('restDropdownContainer');
     restSelectContainer.appendChild(createRestDropdown());
@@ -76,7 +77,7 @@ function createTimeDropdown() {
 
         const option = document.createElement('option');
         option.value = i;
-        option.textContent = minutes + ":" + seconds;;
+        option.textContent = minutes + ":" + seconds;
 
         select.appendChild(option);
     }
