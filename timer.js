@@ -1,4 +1,3 @@
-//hi
 document.addEventListener('DOMContentLoaded', function() {
     const restSelectContainer = document.getElementById('restDropdownContainer');
     restSelectContainer.appendChild(createRestDropdown());
