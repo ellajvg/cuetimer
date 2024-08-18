@@ -105,7 +105,6 @@ function createPeriodArray() {
     const rows = tbody.querySelectorAll('tr');
 
     let periods;
-
     periods = Array.from(rows).map(row => {
         const cells = row.querySelectorAll('td');
         return {

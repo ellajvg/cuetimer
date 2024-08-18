@@ -139,7 +139,6 @@ function completeExercise(index) {
     displayNextExercise(currentExerciseIndex);
 }
 
-
 function previousExercise(index, set) {
     document.getElementById('completeBtn').style.display = 'block';
     if (set - 1 > 0) {
