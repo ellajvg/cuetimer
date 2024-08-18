@@ -51,7 +51,6 @@ let repeatIndex = 1;
 let currentExerciseIndex = 0;
 let currentExerciseSet = 1;
 
-
 function createExerciseArray() {
     const table = document.getElementById('tableContainer');
     const tbody = table.querySelector('tbody');

@@ -22,15 +22,15 @@ document.getElementById('toCueBtn').addEventListener('click', () => {
     document.getElementById('previewWorkout').style.display = 'none';
     document.getElementById('startBothButton').style.display = 'none';
 });
-*/
-
-
-function goBack() {
-    location.reload();
-}
 
 function previewWorkout() {
 
+}
+
+*/
+
+function goBack() {
+    location.reload();
 }
 
 function showContent(content) {
