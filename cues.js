@@ -42,8 +42,6 @@ document.getElementById('previousExerciseBtn').addEventListener('click', () => {
     previousExercise(currentExerciseIndex, currentExerciseSet);
 });
 
-
-
 document.addEventListener('intervalStarted', () => {
     completeExercise(currentExerciseIndex);
 });
