@@ -1,32 +1,91 @@
 h1, h2, h3, h4, h5, h6 {
-    font-family: 'Impact', sans-serif;
+    font-family: 'Impact', fantasy;
+    font-size: 300%;
+    color: white;
 }
 
+body {
+    background: linear-gradient(90deg, darkblue, magenta);
+    color: white;
+}
 
 .content {
     display: none;
 }
 
-.hidden {
-    display: none;
+button, a {
+    color: black;
 }
 
 .flex-container {
     display: flex;
-    justify-content: space-between;
-    gap: 20px;
+    justify-content: center;
+    align-items: flex-start;
+    height: 80vh;
+    gap: 80px;
+
 }
 
-.half-content {
-    width: 48%; /* Adjust width as needed */
+.start-btn {
+    position: fixed;
+    right: 0;
 }
 
-
-#timer, #cues {
-    display: none; /*Hide the individual content divs by default*/
+.back-btn {
+    position: fixed;
+    left: 0;
 }
 
+select {
+    padding: 10px;
+    font-size: 30px;
+    outline: none;
+    border: none;
+    background-color: transparent;
+    color: white;
+    font-family: 'Impact', sans-serif;
+}
 
-#both .half-content {
-    display: block;
+select option {
+    background-color: #ffffff;
+    color: #333;
+    padding: 10px;
+}
+
+.progress-bar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    gap: 10px;
+}
+
+#myProgress {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 50%;
+    height: 30px;
+    background-color: transparent;
+    border: 2px solid white;
+    border-radius: 15px;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+#myBar {
+    width: 0%;
+    height: 100%;
+    background-color: white;
+    border-radius: 13px;
+    transition: width 0.5s ease;
+}
+
+h3, #repeatDropdownContainer {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+#repeatDropdownContainer {
+    margin-left: 10px;
 }

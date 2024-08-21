@@ -35,16 +35,28 @@ function goBack() {
 
 function showContent(content) {
     document.querySelectorAll('.content').forEach(el => el.style.display = 'none');
-    document.getElementById(content).style.display = 'block';
+
+    document.getElementById('backBtn').style.display = 'block';
+
+    document.getElementById('startBtn').style.display = 'block';
+    document.getElementById('timerStartBtn').style.display = 'none';
+    document.getElementById('cuesStartBtn').style.display = 'none';
+    document.getElementById('bothStartBtn').style.display = 'none';
+
     if (content === 'timer') {
-        document.getElementById('timerSpecific').style.display = 'block';
+        document.getElementById(content).style.display = 'block';
+        document.getElementById('timerStartBtn').style.display = 'block';
     } else if (content === 'cues') {
-        document.getElementById('cueSpecific').style.display = 'block';
+        document.getElementById(content).style.display = 'block';
+        document.getElementById('cuesStartBtn').style.display = 'block';
     } else {
         document.getElementById('cues').style.display = 'block';
+        document.getElementById('cueSpecific').style.display = 'none';
+        document.getElementById('timer').style.display = 'block';
+        document.getElementById('bothStartBtn').style.display = 'block';
         //document.getElementById('toCueBtn').style.display = 'none';
         //document.getElementById('previewWorkout').style.display = 'none';
-        //document.getElementById('startBothButton').style.display = 'none';
+        //document.getElementById('bothStartBtn').style.display = 'none';
     }
     document.getElementById('buttons').style.display = 'none';
 }

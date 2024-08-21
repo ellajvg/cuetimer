@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
-    addRows(5, 'tableContainer');
+    addRows();
 
     const repeatSelectContainer = document.getElementById('repeatDropdownContainer');
 

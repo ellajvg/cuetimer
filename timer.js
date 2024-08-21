@@ -29,7 +29,7 @@ function addWork() {
         head.textContent = 'Work period ' + exercise;
 
         const exerciseRestHeader = document.getElementById('exerciseRestHeader');
-        exerciseRestHeader.querySelector('h3').textContent = 'Rest between work periods'
+        exerciseRestHeader.querySelector('h3').textContent = 'Rest b/w periods'
 
         document.getElementById('roundRestHeader').style.display = 'block';
         document.getElementById('roundRestDropdownContainer').style.display = 'block';
@@ -50,13 +50,16 @@ function removeWork() {
     if (tbody.rows.length > 1) {
         tbody.deleteRow(tbody.rows.length - 1);
 
-        tbody.rows[0].querySelector('th').textContent = 'Work';
+        if (tbody.rows.length === 1) {
+            tbody.rows[0].querySelector('th').textContent = 'Work';
 
-        const exerciseRestHeader = document.getElementById('exerciseRestHeader');
-        exerciseRestHeader.querySelector('h3').textContent = 'Rest'
+            const exerciseRestHeader = document.getElementById('exerciseRestHeader');
+            exerciseRestHeader.querySelector('h3').textContent = 'Rest'
 
-        document.getElementById('roundRestHeader').style.display = 'none';
-        document.getElementById('roundRestDropdownContainer').style.display = 'none';
+            document.getElementById('roundRestHeader').style.display = 'none';
+            document.getElementById('roundRestDropdownContainer').style.display = 'none';
+        }
+
     } else {
         window.alert("Cannot remove the last remaining row.");
     }
@@ -117,10 +120,26 @@ function createPeriodArray() {
 
 function startTimerWorkout() {
     const periods = createPeriodArray();
-
     const rounds = parseInt(document.getElementById('roundDropdownContainer').querySelector('select').value, 10);
     const exerciseRest = parseInt(document.getElementById('restDropdownContainer').querySelector('select').value, 10);
     const roundRest = parseInt(document.getElementById('roundRestDropdownContainer').querySelector('select').value, 10);
+
+    let progress = document.getElementById('myBar');
+    let totalTime = 0;
+    let width = 0;
+    let workoutStarted = false;
+    for (let i=0; i < periods.length; i++) {
+        totalTime += periods[i].work_period;
+    }
+
+    totalTime *= rounds;
+    if (exerciseRest > 0) {
+        if (roundRest > 0) {
+            totalTime += (exerciseRest*rounds);
+            totalTime *= (roundRest*rounds) - roundRest;
+        }
+        totalTime += (exerciseRest*rounds) - exerciseRest;
+    }
 
     let currentPeriodIndex = 0;
     let currentRound = 1;
@@ -155,6 +174,14 @@ function startTimerWorkout() {
         const display = document.getElementById('countdown');
 
         interval = setInterval(() => {
+            if (workoutStarted) {
+                setTimeout(() => {
+                    width += (100/totalTime);
+                    progress.style.width = width + "%";
+                    document.getElementById('progressLabel').textContent = width + "%";
+                }, 1000);
+            }
+
             if (!isPaused) {
                 let minutes = Math.floor(timer / 60);
                 let seconds = timer % 60;
@@ -166,6 +193,7 @@ function startTimerWorkout() {
                 document.getElementById('pauseResumeBtn').style.display = 'block';
 
                 if (--timer < 1) {
+                    workoutStarted = true;
                     clearInterval(interval);
 
                     //responsible for the work and rest timers within rounds
