@@ -7,23 +7,27 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<h1 class="gradient-text"> CueTimer</h1>
+
+<div id="themes">
+    <button id="pink" class="colors">P</button>
+    <button id="blue" class="colors">B</button>
+    <button id="gray" class="colors">G</button>
+</div>
 
 <div id="buttons">
+    <button id="cueBtn" onclick="showContent('cues')">I want cues</button>
     <button id="timerBtn" onclick="showContent('timer')">I want a timer</button>
-    <button id="cueBtn" onclick="showContent('cues')">I want exercise cues</button>
     <button id="bothBtn" onclick="showContent('both')">I want both</button>
 </div>
 
 <div class="flex-container">
     <div id="cues" class="content">
-        <h2>Exercises</h2>
         <div id="errorContainer" class="error"></div>
         <div id="tableContainer">
             <table>
                 <thead>
                 <tr>
-                    <th>Exercises</th>
+                    <th>Exercise</th>
                     <th>Reps</th>
                     <th>Sets</th>
                 </tr>
@@ -32,7 +36,7 @@
                 </tbody>
             </table>
         </div>
-        <button onclick="addRows()">Add more rows</button>
+        <button class="plus-minus" onclick="addRows()">+</button>
         <div class="repeat-container">
             <h3>Rounds</h3>
             <div id="repeatDropdownContainer"></div>
@@ -48,44 +52,46 @@
     </div>
 
     <div id="timer" class="content">
-        <h2>Timer</h2>
-        <div id="workContainer">
-            <table>
-                <tbody id="workTableBody">
-                </tbody>
-            </table>
+        <div id="preTimer">
+            <div id="workContainer">
+                <table>
+                    <tbody id="workTableBody">
+                    </tbody>
+                </table>
+            </div>
+            <button class="plus-minus" onclick="addWork()">+</button>
+            <button class="plus-minus" onclick="removeWork()">-</button>
+            <div id="exerciseRestHeader"> <h3> Rest </h3> </div>
+            <div id="restDropdownContainer"></div>
+            <div id="roundHeader"> <h3> Rounds </h3> </div>
+            <div id="roundDropdownContainer"></div>
+            <div id="roundRestHeader" style="display: none;"> <h3> Rest b/w rounds </h3> </div>
+            <div id="roundRestDropdownContainer" style="display: none;"></div>
         </div>
-        <button onclick="addWork()">+ add work period</button>
-        <button onclick="removeWork()">- remove work period</button>
-        <div id="exerciseRestHeader"> <h3> Rest </h3> </div>
-        <div id="restDropdownContainer"></div>
-        <div id="roundHeader"> <h3> Rounds </h3> </div>
-        <div id="roundDropdownContainer"></div>
-        <div id="roundRestHeader" style="display: none;"> <h3> Rest b/w rounds </h3> </div>
-        <div id="roundRestDropdownContainer" style="display: none;"></div>
-        <button id="pauseResumeBtn" style="display: none;">Pause</button>
         <div id="workOrRest"></div>
-        <div id="countdown"></div>
+        <div id="countdown" style="display: none;"></div>
+        <button id="pauseResumeBtn" style="display: none;">Pause</button>
+        <div id="progressContainer" class="progress-bar" style="display: none;">
+            <div id="myProgress">
+                <div id="myBar"></div>
+            </div>
+            <span id="progressLabel" class="progress-label">0%</span>
+        </div>
     </div>
 
 </div>
 
 <div id="startBtn" class="content start-btn">
-    <button id="cuesStartBtn" onclick="startCueWorkout()">Start workout</button>
-    <button id="timerStartBtn" onclick="startTimerWorkout()">Start workout</button>
-    <button id="bothStartBtn" onclick="startBothWorkout()">Start workout</button>
+    <button id="cuesStartBtn" onclick="startCueWorkout()">Start ></button>
+    <button id="timerStartBtn" onclick="startTimerWorkout()">Start ></button>
+    <button id="bothStartBtn" onclick="startBothWorkout()">Start ></button>
 </div>
 
-<div id="backBtn" class="content back-btn">
-    <button onclick="goBack()">Back to options</button>
+<div id="back" class="content back-btn">
+    <button id="backBtn" onclick="goBack()">< Options</button>
 </div>
 
-<div class="progress-bar">
-    <div id="myProgress">
-        <div id="myBar"></div>
-    </div>
-    <span id="progressLabel" class="progress-label">0%</span>
-</div>
+
 
 
 <script src="timer.js"></script>

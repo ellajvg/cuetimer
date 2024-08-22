@@ -3,31 +3,23 @@ document.getElementById('bothBtn').addEventListener('click', () => {
     document.getElementById('roundDropdownContainer').style.display = 'none';
 });
 
-/*
-document.getElementById('toTimerBtn').addEventListener('click', () => {
-    document.getElementById('cues').style.display = 'none';
-    document.getElementById('timer').style.display = 'block';
-    document.getElementById('toCueBtn').style.display = 'block';
-    document.getElementById('toTimerBtn').style.display = 'none';
-    document.getElementById('previewWorkout').style.display = 'block';
-    document.getElementById('startBothButton').style.display = 'block';
-});
+document.getElementById('pink').addEventListener('click', () => {
+    document.documentElement.style.setProperty('--color1', 'hotpink');
+    document.documentElement.style.setProperty('--color2', 'pink');
+    document.documentElement.style.setProperty('--color3', '#fff4f8');
+})
 
+document.getElementById('blue').addEventListener('click', () => {
+    document.documentElement.style.setProperty('--color1', 'royalblue');
+    document.documentElement.style.setProperty('--color2', '#a3b8ef');
+    document.documentElement.style.setProperty('--color3', '#f1f4ff');
+})
 
-document.getElementById('toCueBtn').addEventListener('click', () => {
-    document.getElementById('cues').style.display = 'block';
-    document.getElementById('timer').style.display = 'none';
-    document.getElementById('toCueBtn').style.display = 'none';
-    document.getElementById('toTimerBtn').style.display = 'block';
-    document.getElementById('previewWorkout').style.display = 'none';
-    document.getElementById('startBothButton').style.display = 'none';
-});
-
-function previewWorkout() {
-
-}
-
-*/
+document.getElementById('gray').addEventListener('click', () => {
+    document.documentElement.style.setProperty('--color1', '#353535');
+    document.documentElement.style.setProperty('--color2', '#bababa');
+    document.documentElement.style.setProperty('--color3', '#f3f3f3');
+})
 
 function goBack() {
     location.reload();
@@ -36,9 +28,9 @@ function goBack() {
 function showContent(content) {
     document.querySelectorAll('.content').forEach(el => el.style.display = 'none');
 
-    document.getElementById('backBtn').style.display = 'block';
-
+    document.getElementById('back').style.display = 'block';
     document.getElementById('startBtn').style.display = 'block';
+
     document.getElementById('timerStartBtn').style.display = 'none';
     document.getElementById('cuesStartBtn').style.display = 'none';
     document.getElementById('bothStartBtn').style.display = 'none';

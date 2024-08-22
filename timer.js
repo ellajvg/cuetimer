@@ -151,6 +151,9 @@ function startTimerWorkout() {
     if (periods.length > 0 && rounds > 0) {
         startNextInterval(5);
         setTimeout(() => {
+            document.getElementById('preTimer').style.display = 'none';
+            document.getElementById('progressContainer').style.display = 'flex';
+            document.getElementById('countdown').style.display = 'flex';
             document.getElementById('workOrRest').textContent = "Your workout begins in...";
         }, 1000);
     } else {
@@ -252,10 +255,10 @@ function startTimerWorkout() {
                     //when there are no more periods and rounds left, workout ends
                     } else {
                         setTimeout(() => {
-                            document.getElementById('workOrRest').textContent = "";
+                            document.getElementById('workOrRest').textContent = "Workout complete!";
                             const event = new CustomEvent('intervalStarted');
                             document.dispatchEvent(event);
-                            display.textContent = "Workout complete!";
+                            display.textContent = "00:00";
                         }, 1000);
                     }
                 } else {
