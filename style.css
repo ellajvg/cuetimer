@@ -5,22 +5,57 @@
 }
 
 h1, h2, h3, h4, h5, h6 {
-    font-family: "Webstorm mono",monospace;
-    font-size: 300%;
-    color: black;
+    font-family: "Roboto", sans-serif;
+    font-size: 200%;
+    color: var(--color1);
 }
 
 body {
     background: white;
-    color: black;
+    color: var(--color1);
+}
+
+.content {
+    display: none;
+}
+
+.flex-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 90vh;
+    gap: 80px;
+}
+
+#cues, #timer {
+    border: 40px solid var(--color3);
+    border-radius: 30px;
+    background: var(--color3);
 }
 
 table {
-    font-family: "Webstorm mono",monospace;
+    font-family: "Roboto", sans-serif;
     font-size: 200%;
-    color: black;
-    border-spacing: 20px 0;
-    border-collapse: separate;
+    color: var(--color1);
+}
+
+#cueTable th {
+    text-align: left;
+    padding-right: 50px;
+}
+
+#timerTable th {
+    text-align: left;
+    padding-right: 30px;
+}
+
+input {
+    height: 30px;
+    width: 150px;
+    font-size: 16px;
+    border-radius: 10px;
+    border: 2px solid var(--color2);
+    color: var(--color1);
 }
 
 /*buttons*/
@@ -30,80 +65,16 @@ button {
     border-radius: 10px;
     border-width: 0;
     box-shadow: var(--color1) 3px 5px 12px, var(--color2) -1px -4px 0 inset;
-    box-sizing: border-box;
     color: var(--color1);
     cursor: pointer;
-    display: inline-flex;
     font-family: "Webstorm mono",monospace;
-    justify-content: center;
     padding-left: 16px;
     padding-right: 16px;
-    position: relative;
-    text-align: left;
-    text-decoration: none;
     transition: box-shadow .15s,transform .15s;
-    user-select: none;
-    -webkit-user-select: none;
-    touch-action: manipulation;
-    white-space: nowrap;
-    will-change: box-shadow,transform;
 }
 
 button:hover {
     box-shadow: var(--color1) 3px 5px 6px, var(--color2) 0 -2px 0 inset;
-    transform: translateY(2px);
-}
-
-#themes {
-    display: flex;
-    position: fixed;
-    gap: 10px;
-}
-
-.colors {
-    width: 30px;
-    height: 30px;
-    padding-left: 10px;
-    padding-right: 10px;
-    border-radius: 30px;
-
-}
-
-.colors:hover {
-    box-shadow: var(--color1) 1px 3px 2px, var(--color2) 0 0 0 inset;
-    transform: translateY(2px);
-}
-
-#pink {
-    color: hotpink;
-    background-color: #fff4f8;
-    box-shadow: hotpink 1px 3px 5px, pink 0 -1px 0 inset;
-}
-
-#pink:hover {
-    box-shadow: hotpink 1px 3px 5px, pink 0 -1px 0 inset;
-    transform: translateY(2px);
-}
-
-#blue {
-    color: royalblue;
-    background-color: #f1f4ff;
-    box-shadow: royalblue 1px 3px 5px, #a3b8ef 0 -1px 0 inset;
-}
-
-#blue:hover {
-    box-shadow: royalblue 1px 3px 5px, #a3b8ef 0 -1px 0 inset;
-    transform: translateY(2px);
-}
-
-#gray {
-    color: #353535;
-    background-color: #f3f3f3;
-    box-shadow: #353535 1px 3px 5px, #bababa 0 -1px 0 inset;
-}
-
-#gray:hover {
-    box-shadow: #353535 1px 3px 5px, #bababa 0 -1px 0 inset;
     transform: translateY(2px);
 }
 
@@ -116,7 +87,6 @@ button:hover {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: auto;
     gap: 60px;
 }
 
@@ -125,26 +95,7 @@ button:hover {
     font-size: 25px;
 }
 
-#cuesStartBtn, #timerStartBtn, #bothStartBtn, #backBtn {
-    font-size: 12px; /* Smaller font size */
-    height: 40px; /* Smaller height */
-    padding-left: 10px; /* Adjust padding */
-    padding-right: 10px;
-}
-
-.start-btn {
-    position: fixed;
-    color: dimgray;
-    right: 3%;
-}
-
-.back-btn {
-    position: fixed;
-    color: dimgray;
-    left: 3%;
-}
-
-.plus-minus {
+.plus-minus, .colors, #pauseResumeBtn {
     font-size: 18px;
     height: 30px;
     padding-left: 10px;
@@ -153,21 +104,65 @@ button:hover {
     box-shadow: var(--color1) 1px 3px 5px, var(--color2) 0 -1px 0 inset;
 }
 
-.plus-minus:hover {
+.plus-minus:hover, .colors:hover, #pauseResumeBtn:hover {
     box-shadow: var(--color1) 1px 3px 2px, var(--color2) 0 0 0 inset;
     transform: translateY(2px);
 }
 
-.content {
-    display: none;
+#themes {
+    display: flex;
+    position: fixed;
+    gap: 10px;
 }
 
-.flex-container {
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    height: 88vh;
-    gap: 80px;
+#pink {
+    color: hotpink;
+    background-color: #fff4f8;
+    box-shadow: hotpink 1px 3px 5px, #ffb7d8 0 -1px 0 inset;
+}
+
+#pink:hover {
+    box-shadow: hotpink 1px 3px 2px, #ffb7d8 0 0 0 inset;
+    transform: translateY(2px);
+}
+
+#blue {
+    color: royalblue;
+    background-color: #f1f4ff;
+    box-shadow: royalblue 1px 3px 5px, #a3b8ef 0 -1px 0 inset;
+}
+
+#blue:hover {
+    box-shadow: royalblue 1px 3px 2px, #a3b8ef 0 0 0 inset;
+    transform: translateY(2px);
+}
+
+#gray {
+    color: #353535;
+    background-color: #f3f3f3;
+    box-shadow: #353535 1px 3px 5px, #bababa 0 -1px 0 inset;
+}
+
+#gray:hover {
+    box-shadow: #353535 1px 3px 2px, #bababa 0 0 0 inset;
+    transform: translateY(2px);
+}
+
+#cuesStartBtn, #timerStartBtn, #bothStartBtn, #backBtn {
+    font-size: 16px;
+    height: 50px;
+}
+
+.start-btn {
+    position: fixed;
+    bottom: 5%;  /* Position from the bottom of the viewport */
+    right: 3%;     /* Adjust as needed */
+}
+
+.back-btn {
+    position: fixed;
+    bottom: 5%;  /* Position from the bottom of the viewport */
+    left: 3%;      /* Adjust as needed */
 }
 
 #countdown {
@@ -175,27 +170,26 @@ button:hover {
     justify-content: center;
     font-family: "Roboto",sans-serif;
     font-size: 2000%;
-    color: black;
+    color: var(--color2);
     align-items: center;
-    min-width: 100vw;
 }
 
-
-
 select {
-    padding: 10px;
+    min-width: 70px;
+    padding-top: 10px;
+    padding-bottom: 10px;
     font-size: 30px;
-    outline: none;
-    border: none;
+    outline: 0;
+    border: 0;
     background-color: transparent;
-    color: black;
+    color: var(--color1);
     font-family: "Roboto",sans-serif;
 }
 
 select option {
-    background-color: #ffffff;
-    color: #333;
-    padding: 10px;
+    font-size: 50%;
+    background-color: var(--color3);
+    color: var(--color1);
 }
 
 .progress-bar {
@@ -206,36 +200,106 @@ select option {
     gap: 10px;
 }
 
+#pauseResumeBtn {
+    position: fixed;
+    left: 22%;
+}
+
 #myProgress {
+    position: fixed;
     display: flex;
     align-items: center;
     justify-content: flex-start;
     width: 50%;
     height: 30px;
     background-color: transparent;
-    border: 2px solid black;
+    box-shadow: 3px 5px 12px var(--color1); /* Shadow effect */
     border-radius: 15px;
     padding: 0;
     box-sizing: border-box;
 }
 
 #myBar {
-    width: 0%;
+    width: 0;
     height: 100%;
-    background-color: black;
+    background: linear-gradient(90deg, var(--color2), var(--color1));
     border-radius: 13px;
-    transition: width 0.5s ease;
+    transition: width 1s ease;
 }
 
 #progressLabel {
+    position: relative;
+    left: 48%;
     font-family: "Roboto",sans-serif;
+    font-weight: bold;
 }
 
-h3, #repeatDropdownContainer, #restDropdownContainer, #roundDropdownContainer {
+h3, #repeatDropdownContainer, #restDropdownContainer, #roundDropdownContainer, #roundRestDropdownContainer {
     display: inline-block;
     vertical-align: middle;
 }
 
 #repeatDropdownContainer {
-    margin-left: 10px;
+    margin-left: 20px;
 }
+
+#restDropdownContainer {
+    margin-left: 42px;
+}
+
+#roundDropdownContainer {
+    margin-left: 23px;
+}
+
+#roundRestDropdownContainer {
+    margin-left: 53px;
+}
+
+#workOrRest {
+    text-align: center;
+    font-family: "Roboto",sans-serif;
+    font-size: 40px;
+    font-weight: bold;
+}
+
+#cueText {
+    text-align: center;
+    font-family: "Roboto",sans-serif;
+}
+
+#currentExerciseContainer {
+    font-size: 70px;
+    font-weight: bold;
+    color: var(--color1);
+}
+
+#nextExerciseContainer {
+    font-size: 40px;
+    font-weight: bold;
+    color: var(--color2);
+}
+
+#cueSpecific {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#completeBtn, #previousExerciseBtn {
+    font-size: 30px;
+    padding-bottom: 10px;
+}
+
+#nextExercise {
+    position: relative;
+    color: var(--color2);
+    top: 60px;
+    text-align: right;
+    font-family: "Roboto",sans-serif;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+
+
+

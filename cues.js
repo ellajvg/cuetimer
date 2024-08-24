@@ -75,8 +75,16 @@ function startCueWorkout() {
     currentExerciseIndex = 0;
     currentExerciseSet = 1;
 
-    document.getElementById('completeBtn').style.display = 'block';
-    document.getElementById('previousExerciseBtn').style.display = 'block';
+    if (!together) {
+        document.getElementById('preCues').style.display = 'none';
+        document.getElementById('cueScreen').style.display = 'block';
+        document.getElementById('cueScreen').style.minWidth = '800px';
+        document.getElementById('cueScreen').style.minHeight = '250px';
+        document.getElementById('nextExerciseContainer').style.margin = '50px';
+        document.getElementById('completeBtn').style.display = 'block';
+        document.getElementById('previousExerciseBtn').style.display = 'block';
+        document.getElementById('previousExerciseBtn').style.visibility = 'hidden';
+    }
 
     createExerciseArray();
 
@@ -94,8 +102,8 @@ function displayCurrentExercise(index) {
             exerciseContainer.textContent = `Now: ${exercises[index].exercise}`;
         }
     } else {
-        exerciseContainer.textContent = 'All exercises completed!';
-        document.getElementById('completeBtn').style.display = 'none';
+        exerciseContainer.textContent = 'Workout complete!';
+        document.getElementById('completeBtn').style.visibility = 'hidden';
     }
 }
 
@@ -104,25 +112,29 @@ function displayNextExercise(index) {
     const repeats = parseInt(document.getElementById('repeatDropdownContainer').querySelector('select').value);
 
     if (index < exercises.length && currentExerciseSet < exercises[index].sets) {
-        exerciseContainer.textContent = `Next exercise is: ${exercises[index].exercise}`;
+        exerciseContainer.textContent = `Next exercise: ${exercises[index].exercise}`;
     } else if (index + 1 < exercises.length) {
-        exerciseContainer.textContent = `Next exercise is: ${exercises[index + 1].exercise}`;
+        exerciseContainer.textContent = `Next exercise: ${exercises[index + 1].exercise}`;
     } else if (repeatIndex < repeats) {
-        exerciseContainer.textContent = `Next exercise is: ${exercises[0].exercise}`;
+        exerciseContainer.textContent = `Next exercise: ${exercises[0].exercise}`;
     } else {
         exerciseContainer.textContent = '';
+        document.getElementById('currentExerciseContainer').style.marginBottom = '147px';
     }
 }
 
 function completeExercise(index) {
+    document.getElementById('previousExerciseBtn').style.visibility = 'visible';
     const repeats = parseInt(document.getElementById('repeatDropdownContainer').querySelector('select').value);
 
     if (exercises.length === 1) {
         if (currentExerciseSet < exercises[0].sets) {
             currentExerciseSet++;
-        } else if (repeatIndex <= repeats) {
+        } else if (repeatIndex < repeats) {
             repeatIndex++;
             currentExerciseSet = 1;
+        } else {
+            currentExerciseIndex++;
         }
     } else if (currentExerciseSet < exercises[index].sets) {
         currentExerciseSet++;
@@ -140,7 +152,14 @@ function completeExercise(index) {
 }
 
 function previousExercise(index, set) {
-    document.getElementById('completeBtn').style.display = 'block';
+    document.getElementById('currentExerciseContainer').style.marginBottom = '0';
+    document.getElementById('completeBtn').style.visibility = 'visible';
+
+    if (exercises.length === 1 && index === 1) {
+        currentExerciseIndex = 0;
+        set++;
+    }
+
     if (set - 1 > 0) {
         currentExerciseSet = set - 1;
     } else if (index - 1 >= 0) {
@@ -150,59 +169,13 @@ function previousExercise(index, set) {
         repeatIndex--;
         currentExerciseIndex = exercises.length - 1;
         currentExerciseSet =  exercises[currentExerciseIndex].sets;
-    } else {
-        window.alert("You're at the start of your workout!")
+    }
+
+    if (!((currentExerciseSet - 1 > 0) || (currentExerciseIndex - 1 >= 0) || (repeatIndex > 1))) {
+        document.getElementById('previousExerciseBtn').style.visibility = 'hidden';
     }
 
     displayCurrentExercise(currentExerciseIndex);
     displayNextExercise(currentExerciseIndex);
 }
-
-/*
-function displayCurrentExercise(index) {
-    const exerciseContainer = document.getElementById('currentExerciseContainer');
-    if (index < exercises.length) {
-        if (exercises[index].reps > 0) {
-            exerciseContainer.textContent = `Now: ${exercises[index].reps} ${exercises[index].exercise}`;
-        } else {
-            exerciseContainer.textContent = `Now: ${exercises[index].exercise}`;
-        }
-    } else {
-        exerciseContainer.textContent = 'All exercises completed!';
-        document.getElementById('completeBtn').style.display = 'none';
-    }
-}
-
-function displayNextExercise(index) {
-    const exerciseContainer = document.getElementById('nextExerciseContainer');
-    if (index < exercises.length && currentExerciseSet < exercises[index].sets) {
-        exerciseContainer.textContent = `Next exercise is: ${exercises[index].exercise}`;
-    } else if (index + 1 < exercises.length) {
-        exerciseContainer.textContent = `Next exercise is: ${exercises[index + 1].exercise}`;
-    } else {
-        let repeats = parseInt(document.getElementById('repeatDropdownContainer').querySelector('select').value);
-        if (repeatIndex < repeats) {
-            repeatIndex++;
-            currentExerciseIndex = 0;
-            currentExerciseSet = 0;
-            exerciseContainer.textContent = `Next exercise is: ${exercises[0].exercise}`;
-        } else {
-            exerciseContainer.textContent = '';
-        }
-    }
-}
-
-function completeExercise(index) {
-    if (index < exercises.length && currentExerciseSet < exercises[index].sets) {
-        currentExerciseSet++;
-    } else {
-        currentExerciseIndex++;
-        currentExerciseSet = 1;
-    }
-    displayCurrentExercise(currentExerciseIndex);
-    displayNextExercise(currentExerciseIndex);
-}
-
-
-*/
 

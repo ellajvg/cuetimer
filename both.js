@@ -1,29 +1,70 @@
+let together = false;
+
 document.getElementById('bothBtn').addEventListener('click', () => {
     document.getElementById('roundHeader').style.display = 'none';
     document.getElementById('roundDropdownContainer').style.display = 'none';
+    together = true;
+});
+
+document.querySelectorAll('button').forEach(button => {
+    button.addEventListener('click', () => {
+        document.getElementById('clickSound').play();
+    });
 });
 
 document.getElementById('pink').addEventListener('click', () => {
     document.documentElement.style.setProperty('--color1', 'hotpink');
-    document.documentElement.style.setProperty('--color2', 'pink');
+    document.documentElement.style.setProperty('--color2', '#ffb7d8');
     document.documentElement.style.setProperty('--color3', '#fff4f8');
+    if (document.getElementById('workOrRest').textContent === 'Work') {
+        document.getElementById('countdown').style.color = 'hotpink';
+    } else {
+        document.getElementById('countdown').style.color = '#ffb7d8';
+    }
 })
 
 document.getElementById('blue').addEventListener('click', () => {
     document.documentElement.style.setProperty('--color1', 'royalblue');
     document.documentElement.style.setProperty('--color2', '#a3b8ef');
     document.documentElement.style.setProperty('--color3', '#f1f4ff');
+    if (document.getElementById('workOrRest').textContent === 'Work') {
+        document.getElementById('countdown').style.color = 'royalblue';
+    } else {
+        document.getElementById('countdown').style.color = '#a3b8ef';
+    }
 })
 
 document.getElementById('gray').addEventListener('click', () => {
     document.documentElement.style.setProperty('--color1', '#353535');
     document.documentElement.style.setProperty('--color2', '#bababa');
     document.documentElement.style.setProperty('--color3', '#f3f3f3');
+    if (document.getElementById('workOrRest').textContent === 'Work') {
+        document.getElementById('countdown').style.color = '#353535';
+    } else {
+        document.getElementById('countdown').style.color = '#bababa';
+    }
 })
 
 function goBack() {
+    const rootStyles = getComputedStyle(document.documentElement);
+    const color1 = rootStyles.getPropertyValue('--color1');
+    localStorage.setItem('savedColor', color1);
     location.reload();
 }
+
+document.addEventListener('DOMContentLoaded', () => {
+    const savedColor = localStorage.getItem('savedColor');
+
+    if (savedColor === 'hotpink') {
+        document.documentElement.style.setProperty('--color1', 'hotpink');
+        document.documentElement.style.setProperty('--color2', '#ffb7d8');
+        document.documentElement.style.setProperty('--color3', '#fff4f8');
+    } else if (savedColor === 'royalblue') {
+        document.documentElement.style.setProperty('--color1', 'royalblue');
+        document.documentElement.style.setProperty('--color2', '#a3b8ef');
+        document.documentElement.style.setProperty('--color3', '#f1f4ff');
+    }
+});
 
 function showContent(content) {
     document.querySelectorAll('.content').forEach(el => el.style.display = 'none');
@@ -46,9 +87,6 @@ function showContent(content) {
         document.getElementById('cueSpecific').style.display = 'none';
         document.getElementById('timer').style.display = 'block';
         document.getElementById('bothStartBtn').style.display = 'block';
-        //document.getElementById('toCueBtn').style.display = 'none';
-        //document.getElementById('previewWorkout').style.display = 'none';
-        //document.getElementById('bothStartBtn').style.display = 'none';
     }
     document.getElementById('buttons').style.display = 'none';
 }
@@ -103,7 +141,7 @@ function startBothWorkout() {
     } else {
         const roundDropdown = document.getElementById('roundDropdownContainer').querySelector('select');
         roundDropdown.value = numberOfExercises/numberOfWorkPeriods;
-        startTimerWorkout();
+        startTimerWorkout(exercises[0].exercise);
     }
 }
 

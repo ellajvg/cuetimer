@@ -14,32 +14,30 @@ document.addEventListener('DOMContentLoaded', function() {
 let exercise = 1;
 
 function addWork() {
-    const workContainer = document.getElementById('workContainer');
-    const table = workContainer.querySelector('table');
-
     const tbody = document.getElementById('workTableBody');
     const row = document.createElement('tr');
-    const cell = document.createElement('td');
     const head = document.createElement('th');
+    const cell = document.createElement('td');
 
     if (exercise === 1) {
         head.textContent = 'Work';
+
     } else {
         tbody.rows[0].querySelector('th').textContent = 'Work period ' + 1;
+
         head.textContent = 'Work period ' + exercise;
 
-        const exerciseRestHeader = document.getElementById('exerciseRestHeader');
-        exerciseRestHeader.querySelector('h3').textContent = 'Rest b/w periods'
+        document.getElementById('exerciseRestHeader').textContent = 'Rest (period)';
+        document.getElementById('restDropdownContainer').style.marginLeft = '46px';
 
-        document.getElementById('roundRestHeader').style.display = 'block';
-        document.getElementById('roundRestDropdownContainer').style.display = 'block';
+        document.getElementById('roundRestHeader').style.display = 'inline-block';
+        document.getElementById('roundRestDropdownContainer').style.display = 'inline-block';
     }
 
-    cell.appendChild(head);
     cell.appendChild(createTimeDropdown());
-    row.appendChild(cell);
-    tbody.appendChild(row);
-    table.appendChild(tbody);
+    row.appendChild(head); // Add the <th> directly to the row
+    row.appendChild(cell); // Add the <td> directly to the row
+    tbody.appendChild(row); // Add the row to the <tbody>
 
     exercise++;
 }
@@ -53,18 +51,16 @@ function removeWork() {
         if (tbody.rows.length === 1) {
             tbody.rows[0].querySelector('th').textContent = 'Work';
 
-            const exerciseRestHeader = document.getElementById('exerciseRestHeader');
-            exerciseRestHeader.querySelector('h3').textContent = 'Rest'
+            document.getElementById('exerciseRestHeader').textContent = 'Rest'
+            document.getElementById('restDropdownContainer').style.marginLeft = '42px';
 
             document.getElementById('roundRestHeader').style.display = 'none';
             document.getElementById('roundRestDropdownContainer').style.display = 'none';
         }
-
+        exercise--;
     } else {
         window.alert("Cannot remove the last remaining row.");
     }
-
-    exercise--;
 }
 
 function createTimeDropdown() {
@@ -118,7 +114,10 @@ function createPeriodArray() {
     return periods;
 }
 
-function startTimerWorkout() {
+function startTimerWorkout(exercise) {
+    document.getElementById('currentExerciseContainer').style.display = 'none';
+    document.getElementById('nextExerciseContainer').style.display = 'none';
+
     const periods = createPeriodArray();
     const rounds = parseInt(document.getElementById('roundDropdownContainer').querySelector('select').value, 10);
     const exerciseRest = parseInt(document.getElementById('restDropdownContainer').querySelector('select').value, 10);
@@ -133,12 +132,17 @@ function startTimerWorkout() {
     }
 
     totalTime *= rounds;
-    if (exerciseRest > 0) {
+
+    if (rounds > 1) {
         if (roundRest > 0) {
-            totalTime += (exerciseRest*rounds);
             totalTime *= (roundRest*rounds) - roundRest;
+        } else if (exerciseRest > 0) {
+            totalTime += (exerciseRest*rounds) - exerciseRest;
         }
-        totalTime += (exerciseRest*rounds) - exerciseRest;
+    } else {
+        if (exerciseRest > 0 && periods.length > 1) {
+            totalTime += (exerciseRest*periods.length) - exerciseRest;
+        }
     }
 
     let currentPeriodIndex = 0;
@@ -148,26 +152,27 @@ function startTimerWorkout() {
     let remainingTime;
     let interval;
 
-    if (periods.length > 0 && rounds > 0) {
-        startNextInterval(5);
-        setTimeout(() => {
-            document.getElementById('preTimer').style.display = 'none';
-            document.getElementById('progressContainer').style.display = 'flex';
-            document.getElementById('countdown').style.display = 'flex';
-            document.getElementById('workOrRest').textContent = "Your workout begins in...";
-        }, 1000);
-    } else {
-        console.error('No periods defined or rounds is zero');
-    }
+    startNextInterval(5);
+    setTimeout(() => {
+        document.getElementById('cues').style.display = 'none';
+        document.getElementById('preTimer').style.display = 'none';
+        document.getElementById('progressContainer').style.display = 'flex';
+        document.getElementById('countdown').style.display = 'flex';
+        document.getElementById('workOrRest').textContent = "Your workout begins in...";
+        document.getElementById('nextExercise').textContent = "First up: " + exercise;
+        if (together) {
+            document.getElementById('timerScreen').style.height = '525px';
+        }
+    }, 1000);
 
     document.getElementById('pauseResumeBtn').addEventListener('click', function() {
         if (isPaused) {
             isPaused = false;
-            this.textContent = "Pause";
+            this.textContent = "⏸";
             startNextInterval(remainingTime);
         } else {
             isPaused = true;
-            this.textContent = "Resume";
+            this.textContent = "⏵";
             clearInterval(interval);
         }
     });
@@ -175,17 +180,24 @@ function startTimerWorkout() {
     function startNextInterval(duration) {
         timer = duration;
         const display = document.getElementById('countdown');
+        const workOrRest = document.getElementById('workOrRest');
+        const nextExercise = document.getElementById('nextExercise');
 
         interval = setInterval(() => {
-            if (workoutStarted) {
+            let rootStyles = getComputedStyle(document.documentElement);
+            let color1 = rootStyles.getPropertyValue('--color1');
+            let color2 = rootStyles.getPropertyValue('--color2');
+
+            if (workoutStarted && width < 100) {
                 setTimeout(() => {
                     width += (100/totalTime);
                     progress.style.width = width + "%";
-                    document.getElementById('progressLabel').textContent = width + "%";
+                    let roundedWidth = Math.round(width);
+                    document.getElementById('progressLabel').textContent = roundedWidth + "%";
                 }, 1000);
             }
 
-            if (!isPaused) {
+            if (!isPaused && width < 100) {
                 let minutes = Math.floor(timer / 60);
                 let seconds = timer % 60;
 
@@ -195,32 +207,59 @@ function startTimerWorkout() {
                 display.textContent = minutes + ":" + seconds;
                 document.getElementById('pauseResumeBtn').style.display = 'block';
 
-                if (--timer < 1) {
+                if (timer === 3 || timer === 2 || timer === 1) {
+                    let sound = document.getElementById('countdownSound');
+                    sound.volume = 0.1;
+                    sound.currentTime = 0; // Restart sound from the beginning
+                    sound.play();
+                }
+
+                if (--timer < 1 && !isPaused) {
                     workoutStarted = true;
                     clearInterval(interval);
 
                     //responsible for the work and rest timers within rounds
                     if (currentPeriodIndex < periods.length) {
                         currentPeriodIndex++
-                        if (exerciseRest > 0 && document.getElementById('workOrRest').textContent === 'Work') {
+                        if (exerciseRest > 0 && (workOrRest.textContent !== 'Rest' && workOrRest.textContent !== 'Your workout begins in...')) {
                             setTimeout(() => {
-                                document.getElementById('workOrRest').textContent = "Rest";
-                                document.getElementById('currentExerciseContainer').textContent = "Rest";
+                                let sound = document.getElementById('completeSound');
+                                sound.volume = 0.1;
+                                sound.play();
+                                document.getElementById('countdown').style.color = color2;
+                                workOrRest.textContent = "Rest";
                             }, 1000);
                             currentPeriodIndex--; //rest doesn't count as a work period
                             startNextInterval(exerciseRest);
                         } else {
-                            console.log('here');
                             if (currentRound === 1 && currentPeriodIndex === 1) {
                                 setTimeout(() => {
-                                    document.getElementById('workOrRest').textContent = "Work";
+                                    let sound = document.getElementById('startSound');
+                                    sound.volume = 0.1;
+                                    sound.play();
                                     startCueWorkout();
+                                    if (together) {
+                                        workOrRest.textContent = document.getElementById('currentExerciseContainer').textContent;
+                                        nextExercise.textContent = document.getElementById('nextExerciseContainer').textContent;
+                                    } else {
+                                        workOrRest.textContent = "Work";
+                                    }
+                                    document.getElementById('countdown').style.color = color1;
                                 }, 1000);
                             } else {
                                 setTimeout(() => {
+                                    let sound = document.getElementById('startSound');
+                                    sound.volume = 0.1;
+                                    sound.play();
+                                    document.getElementById('countdown').style.color = color1;
                                     const event = new CustomEvent('intervalStarted');
                                     document.dispatchEvent(event);
-                                    document.getElementById('workOrRest').textContent = "Work";
+                                    if (together) {
+                                        workOrRest.textContent = document.getElementById('currentExerciseContainer').textContent;
+                                        nextExercise.textContent = document.getElementById('nextExerciseContainer').textContent;
+                                    } else {
+                                        workOrRest.textContent = "Work";
+                                    }
                                 }, 1000);
                             }
                             startNextInterval(periods[currentPeriodIndex - 1].work_period);
@@ -232,22 +271,39 @@ function startTimerWorkout() {
                         currentRound++;
                         if (roundRest > 0) {
                             setTimeout(() => {
+                                let sound = document.getElementById('completeSound');
+                                sound.volume = 0.1;
+                                sound.play();
+                                document.getElementById('countdown').style.color = color2;
                                 document.getElementById('currentExerciseContainer').textContent = "Rest";
-                                document.getElementById('workOrRest').textContent = "Round " + (currentRound-1) + " complete!";
+                                workOrRest.textContent = "Round " + (currentRound-1) + " complete!";
                             }, 1000);
                             startNextInterval(roundRest);
                         } else if (exerciseRest > 0) {
                             setTimeout(() => {
+                                let sound = document.getElementById('completeSound');
+                                sound.volume = 0.1;
+                                sound.play();
+                                document.getElementById('countdown').style.color = color2;
                                 document.getElementById('currentExerciseContainer').textContent = "Rest";
-                                document.getElementById('workOrRest').textContent = "Rest";
+                                workOrRest.textContent = "Rest";
                             }, 1000);
                             startNextInterval(exerciseRest);
                         } else {
                             currentPeriodIndex++
                             setTimeout(() => {
-                                document.getElementById('workOrRest').textContent = "Work";
+                                let sound = document.getElementById('startSound');
+                                sound.volume = 0.1;
+                                sound.play();
+                                document.getElementById('countdown').style.color = color1;
                                 const event = new CustomEvent('intervalStarted');
                                 document.dispatchEvent(event);
+                                if (together) {
+                                    workOrRest.textContent = document.getElementById('currentExerciseContainer').textContent;
+                                    nextExercise.textContent = document.getElementById('nextExerciseContainer').textContent;
+                                } else {
+                                    workOrRest.textContent = "Work";
+                                }
                             }, 1000);
                             startNextInterval(periods[currentPeriodIndex - 1].work_period);
                         }
@@ -255,6 +311,9 @@ function startTimerWorkout() {
                     //when there are no more periods and rounds left, workout ends
                     } else {
                         setTimeout(() => {
+                            let sound = document.getElementById('completeSound');
+                            sound.volume = 0.1;
+                            sound.play();
                             document.getElementById('workOrRest').textContent = "Workout complete!";
                             const event = new CustomEvent('intervalStarted');
                             document.dispatchEvent(event);
@@ -268,281 +327,3 @@ function startTimerWorkout() {
         }, 1000);
     }
 }
-
-
-/*
-function startTimerWorkout() {
-    const periods = createPeriodArray();
-
-    const rounds = parseInt(document.getElementById('roundDropdownContainer').querySelector('select').value, 10);
-    const exerciseRest = parseInt(document.getElementById('restDropdownContainer').querySelector('select').value, 10);
-    const roundRest = parseInt(document.getElementById('roundRestDropdownContainer').querySelector('select').value, 10);
-
-    let currentPeriodIndex = 0;
-    let currentRound = 1;
-    let isPaused = false;
-    let timer;
-    let remainingTime;
-    let interval;
-
-    if (periods.length > 0 && rounds > 0) {
-        startNextInterval(5);
-        setTimeout(() => {
-            document.getElementById('workOrRest').textContent = "Your workout begins in...";
-        }, 1000);
-    } else {
-        console.error('No periods defined or rounds is zero');
-    }
-
-    document.getElementById('pauseResumeBtn').addEventListener('click', function() {
-        if (isPaused) {
-            isPaused = false;
-            this.textContent = "Pause";
-            startNextInterval(remainingTime);
-        } else {
-            isPaused = true;
-            this.textContent = "Resume";
-            clearInterval(interval);
-        }
-    });
-
-    function startNextInterval(duration) {
-        timer = duration;
-        const display = document.getElementById('countdown');
-
-        interval = setInterval(() => {
-            if (!isPaused) {
-                let minutes = Math.floor(timer / 60);
-                let seconds = timer % 60;
-
-                minutes = minutes < 10 ? "0" + minutes : minutes;
-                seconds = seconds < 10 ? "0" + seconds : seconds;
-
-                display.textContent = minutes + ":" + seconds;
-                document.getElementById('pauseResumeBtn').style.display = 'block';
-
-                if (--timer < 1) {
-                    clearInterval(interval);
-
-                    if (currentPeriodIndex < periods.length) {
-                        currentPeriodIndex++
-                        //initializing and updating exercise cues
-                        //check if there's rests in between superset exercises
-                        if (exerciseRest > 0 && periods.length > 1 &&
-                            document.getElementById('workOrRest').textContent === 'Work') {
-                            setTimeout(() => {
-                                document.getElementById('workOrRest').textContent = "Rest";
-                            }, 1000);
-                            currentPeriodIndex--; //rest doesn't count as a work period
-                            startNextInterval(exerciseRest);
-                            //start next work period
-                        } else {
-                            if (currentRound === 1 && currentPeriodIndex === 1) {
-                                setTimeout(() => {
-                                    startCueWorkout();
-                                }, 1000);
-                            } else {
-                                setTimeout(() => {
-                                    const event = new CustomEvent('intervalStarted');
-                                    document.dispatchEvent(event);
-                                }, 1000);
-                            }
-                            setTimeout(() => {
-                                document.getElementById('workOrRest').textContent = "Work";
-                            }, 1000);
-                            startNextInterval(periods[currentPeriodIndex - 1].work_period);
-                        }
-
-                    //if not first exercise/superset exercise, check if more rounds
-                    } else if (currentRound < rounds) {
-                        currentPeriodIndex = 0; //reset period index to 0 at the start of each round
-                        currentRound++;
-                        //if rest between round is greater than 0 (default), do round rest
-                        if (roundRest > 0) {
-                            setTimeout(() => {
-                                document.getElementById('currentExerciseContainer').textContent = "Rest";
-                                document.getElementById('workOrRest').textContent = "Round " + (currentRound-1) + " complete!";
-                            }, 1000);
-                            startNextInterval(roundRest);
-                        //else if exercise rest is greater than 0 do that
-                        } else if (exerciseRest > 0) {
-                            setTimeout(() => {
-                                document.getElementById('currentExerciseContainer').textContent = "Rest";
-                                document.getElementById('workOrRest').textContent = "Rest";
-                            }, 1000);
-                            startNextInterval(exerciseRest);
-                        //if no rest, go to next work period
-                        } else {
-                            currentPeriodIndex++
-                            setTimeout(() => {
-                                document.getElementById('workOrRest').textContent = "Work";
-                                const event = new CustomEvent('intervalStarted');
-                                document.dispatchEvent(event);
-                            }, 1000);
-                            startNextInterval(periods[currentPeriodIndex - 1].work_period);
-                        }
-                    } else {
-                        setTimeout(() => {
-                            document.getElementById('workOrRest').textContent = "";
-                            const event = new CustomEvent('intervalStarted');
-                            document.dispatchEvent(event);
-                            display.textContent = "Workout complete!";
-                        }, 1000);
-                    }
-                } else {
-                    remainingTime = timer;
-                }
-            }
-        }, 1000);
-    }
-}
- */
-
-/*
-function startTimerWorkout() {
-    const periods = createPeriodArray();
-
-    const rounds = parseInt(document.getElementById('roundDropdownContainer').querySelector('select').value, 10);
-    const exerciseRest = parseInt(document.getElementById('restDropdownContainer').querySelector('select').value, 10);
-    const roundRest = parseInt(document.getElementById('roundRestDropdownContainer').querySelector('select').value, 10);
-
-    let currentPeriodIndex = 0;
-    let currentRound = 0;
-    let isPaused = false;
-    let timer;
-    let remainingTime;
-    let interval;
-
-    if (periods.length > 0 && rounds > 0) {
-        startNextInterval(5);
-        setTimeout(() => {
-            document.getElementById('workOrRest').textContent = "Your workout begins in...";
-        }, 1000);
-    } else {
-        console.error('No periods defined or rounds is zero');
-    }
-
-    document.getElementById('pauseResumeBtn').addEventListener('click', function() {
-        if (isPaused) {
-            isPaused = false;
-            this.textContent = "Pause";
-            startNextInterval(remainingTime);
-        } else {
-            isPaused = true;
-            this.textContent = "Resume";
-            clearInterval(interval);
-        }
-    });
-
-    function startNextInterval(duration) {
-        timer = duration;
-        const display = document.getElementById('countdown');
-
-        interval = setInterval(() => {
-            if (!isPaused) {
-                let minutes = Math.floor(timer / 60);
-                let seconds = timer % 60;
-
-                minutes = minutes < 10 ? "0" + minutes : minutes;
-                seconds = seconds < 10 ? "0" + seconds : seconds;
-
-                display.textContent = minutes + ":" + seconds;
-                document.getElementById('pauseResumeBtn').style.display = 'block';
-
-                if (--timer < 1) {
-                    clearInterval(interval);
-
-
-                    if (periods.length === 1 && currentRound < rounds) { //simple timer
-                        if (currentRound === 0) { //getting started
-                            currentRound++;
-                            setTimeout(() => {
-                                document.getElementById('workOrRest').textContent = "Work";
-                                startCueWorkout();
-                            }, 1000);
-                            startNextInterval(periods[0].work_period);
-                        } else if (exerciseRest > 0 && document.getElementById('workOrRest').textContent === 'Work') {
-                            setTimeout(() => {
-                                document.getElementById('workOrRest').textContent = "Rest";
-                            }, 1000);
-                            startNextInterval(exerciseRest);
-                        } else {
-                            currentRound++;
-                            setTimeout(() => {
-                                const event = new CustomEvent('intervalStarted');
-                                document.dispatchEvent(event);
-                                document.getElementById('workOrRest').textContent = "Work";
-                            }, 1000);
-                            startNextInterval(periods[0].work_period);
-                        }
-
-
-                    } else if (periods.length > 1 && currentRound < rounds) { //complex timer
-                        if (currentRound === 0 && currentPeriodIndex === 0) { //getting started
-                            currentPeriodIndex++;
-                            setTimeout(() => {
-                                document.getElementById('workOrRest').textContent = "Work";
-                                startCueWorkout();
-                            }, 1000);
-                            startNextInterval(periods[currentPeriodIndex - 1].work_period);
-
-                        } else if (currentPeriodIndex < periods.length) { //going through periods within round
-                            if (exerciseRest > 0 && document.getElementById('workOrRest').textContent === 'Work') {
-                                setTimeout(() => {
-                                    document.getElementById('workOrRest').textContent = "Rest";
-                                }, 1000);
-                                startNextInterval(exerciseRest);
-                            } else {
-                                currentPeriodIndex++;
-                                setTimeout(() => {
-                                    const event = new CustomEvent('intervalStarted');
-                                    document.dispatchEvent(event);
-                                    document.getElementById('workOrRest').textContent = "Work";
-                                }, 1000);
-                                startNextInterval(periods[currentPeriodIndex - 1].work_period);
-                            }
-                        } else { //round 1 complete
-                            currentPeriodIndex = 0;
-                            currentRound++;
-                            if (roundRest > 0) {
-                                setTimeout(() => {
-                                    document.getElementById('currentExerciseContainer').textContent = "Rest";
-                                    document.getElementById('workOrRest').textContent = "Round " + (currentRound) + " complete!";
-                                }, 1000);
-                                startNextInterval(roundRest);
-                                //else if exercise rest is greater than 0 do that
-                            } else if (exerciseRest > 0) {
-                                setTimeout(() => {
-                                    document.getElementById('currentExerciseContainer').textContent = "Rest";
-                                    document.getElementById('workOrRest').textContent = "Rest";
-                                }, 1000);
-                                startNextInterval(exerciseRest);
-                                //if no rest, go to next work period
-                            } else {
-                                currentPeriodIndex++
-                                setTimeout(() => {
-                                    document.getElementById('workOrRest').textContent = "Work";
-                                    const event = new CustomEvent('intervalStarted');
-                                    document.dispatchEvent(event);
-                                }, 1000);
-                                startNextInterval(periods[currentPeriodIndex - 1].work_period);
-                            }
-                        }
-
-
-                    } else if (currentRound === rounds) { //end of workout
-                        setTimeout(() => {
-                            document.getElementById('workOrRest').textContent = "";
-                            const event = new CustomEvent('intervalStarted');
-                            document.dispatchEvent(event);
-                            display.textContent = "Workout complete!";
-                        }, 1000);
-                    }
-                } else {
-                    remainingTime = timer;
-                }
-            }
-        }, 1000);
-    }
-}
- */
