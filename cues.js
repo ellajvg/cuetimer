@@ -136,7 +136,7 @@ function completeExercise(index) {
         } else {
             currentExerciseIndex++;
         }
-    } else if (currentExerciseSet < exercises[index].sets) {
+    } else if (index < exercises.length && currentExerciseSet < exercises[index].sets) {
         currentExerciseSet++;
     } else {
         currentExerciseIndex++;
