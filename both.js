@@ -3,6 +3,8 @@ let together = false;
 document.getElementById('bothBtn').addEventListener('click', () => {
     document.getElementById('roundHeader').style.display = 'none';
     document.getElementById('roundDropdownContainer').style.display = 'none';
+    const flexContainer = document.querySelector('.flex-container');
+    flexContainer.classList.add('portrait-mode');
     together = true;
 });
 

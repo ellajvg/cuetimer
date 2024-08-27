@@ -13,7 +13,7 @@ button {
     background-color: var(--color3);
     border-radius: 0.5em;
     border-width: 0;
-    box-shadow: var(--color1) 0.21vmax 0.35vmax 0.8vmax, var(--color2) -0.05em -0.2em 0 inset;
+    box-shadow: var(--color1) 0.2em 0.3em 0.6em, var(--color2) -0.05em -0.2em 0 inset;
     color: var(--color1);
     cursor: pointer;
     font-family: "Webstorm mono",monospace;
@@ -21,8 +21,8 @@ button {
 }
 
 button:hover {
-    box-shadow: var(--color1) 0.21vmax 0.35vmax 0.42vmax, var(--color2) 0 -0.1em 0 inset;
-    transform: translateY(0.14vmax);
+    box-shadow: var(--color1) 0.2em 0.3em 0.35em, var(--color2) 0 -0.1em 0 inset;
+    transform: translateY(0.15em);
 }
 
 #buttons {
@@ -34,62 +34,60 @@ button:hover {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 7.7vh;
+    gap: 7.5vh;
 }
 
 #cueBtn, #timerBtn, #bothBtn {
-    padding: 3vmin;
-    font-size: 4vmin;
+    padding: 0.8em;
+    font-size: clamp(20px, 2vw, 100vw);
 }
 
 #themes {
     display: flex;
     position: fixed;
-    gap: 0.7vmax;
+    gap: 1em;
 }
 
 #pink {
     color: hotpink;
     background-color: #fff4f8;
-    box-shadow: hotpink 0.07vmax 0.21vmax 0.3vmax, #ffb7d8 0 -0.07vmax 0 inset;
+    box-shadow: hotpink 0.07em 0.2em 0.3em, #ffb7d8 0 -0.07em 0 inset;
 }
 
 #pink:hover {
-    box-shadow: hotpink 0.07vmax 0.21vmax 0.14vmax, #ffb7d8 0 0 0 inset;
+    box-shadow: hotpink 0.07em 0.2em 0.1em, #ffb7d8 0 0 0 inset;
 }
 
 #blue {
     color: royalblue;
     background-color: #f1f4ff;
-    box-shadow: royalblue 0.07vmax 0.21vmax 0.3vmax, #a3b8ef 0 -0.07vmax 0 inset;
+    box-shadow: royalblue 0.07em 0.2em 0.3em, #a3b8ef 0 -0.07em 0 0 inset;
 }
 
 #blue:hover {
-    box-shadow: royalblue 0.07vmax 0.21vmax 0.14vmax, #a3b8ef 0 0 0 inset;
+    box-shadow: royalblue 0.07em 0.2em 0.1em, #a3b8ef 0 0 0 inset;
 }
 
 #gray {
     color: #353535;
     background-color: #f3f3f3;
-    box-shadow: #353535 0.07vmax 0.21vmax 0.3vmax, #bababa 0 -0.07vmax 0 inset;
+    box-shadow: #353535 0.07em 0.2em 0.3em, #bababa 0 -0.07em 0 inset;
 }
 
 #gray:hover {
-    box-shadow: #353535 0.07vmax 0.21vmax 0.14vmax, #bababa 0 0 0 inset;
+    box-shadow: #353535 0.07em 0.2em 0.1em, #bababa 0 0 0 inset;
 }
 
 /*TIMER & CUES*/
 .plus-minus, .colors, #pauseResumeBtn {
-    font-size: 1.2vmax;
-    height: 2vmax;
-    padding-left: 0.7vmax;
-    padding-right: 0.7vmax;
-    border-radius: 1em;
-    box-shadow: var(--color1) 0.07vmax 0.21vmax 0.3vmax, var(--color2) 0 -0.07vmax 0 inset;
+    font-size: clamp(14px, 1.2vw, 100vw);
+    padding: 0.3em 0.6em;
+    border-radius: 6em;
+    box-shadow: var(--color1) 0.07em 0.2em 0.3em, var(--color2) 0 -0.07em 0 inset;
 }
 
 .plus-minus:hover, .colors:hover, #pauseResumeBtn:hover {
-    box-shadow: var(--color1) 0.07vmax 0.21vmax 0.14vmax, var(--color2) 0 0 0 inset;
+    box-shadow: var(--color1) 0.07em 0.2em 0.1em, var(--color2) 0 0 0 inset;
 }
 
 .flex-container {
@@ -105,12 +103,21 @@ button:hover {
     border-radius: 1em;
     background: var(--color3);
     font-family: "Roboto", sans-serif;
-    font-size: 2.2vmax;
+    font-size: clamp(26px, 2.2vw, 100vw);
     color: var(--color1);
 }
 
+@media (orientation: portrait), (max-width: 700px) {
+    .flex-container.portrait-mode {
+        padding-top: 6vh;
+        padding-bottom: 8vh;
+        flex-direction: column;
+        gap: 4vh;
+    }
+}
+
 #cuesStartBtn, #timerStartBtn, #bothStartBtn, #backBtn {
-    font-size: clamp(2vh, 1.1vmax, 2em);
+    font-size: clamp(10px, 20px, 2vh);
     padding: 1em;
 }
 
@@ -127,10 +134,11 @@ button:hover {
 }
 
 #countdown {
+    min-width: clamp(40vw, 600px, 80vw);
     display: flex;
     justify-content: center;
     font-family: "Roboto",sans-serif;
-    font-size: 22.3vmax;
+    font-size: clamp(70px, 300px, 30vw);
     color: var(--color2);
     align-items: center;
 }
@@ -138,43 +146,48 @@ button:hover {
 #nextExercise {
     position: relative;
     color: var(--color2);
-    top: 6vh;
+    top: 1.5em;
     text-align: right;
     font-family: "Roboto",sans-serif;
-    font-size: 2.2vmax;
+    font-size: clamp(26px, 2.5vw, 100vw);
     font-weight: bold;
 }
 
 
 /*CUES ONLY*/
 #cueTable th {
-    padding-right: 3.5vmax;
+    padding-right: 2.2vw;
     text-align: left;
 }
 
 input {
-    height: 2.2vmax;
-    width: 11vmax;
-    border-radius: 0.8vmax;
-    border: 0.18vmax solid var(--color2);
+    height: clamp(22px, 2.2vw, 30vw);
+    width: clamp(100px, 11vw, 60vw);
+    border-radius: 0.8em;
+    border: 0.18em solid var(--color2);
     color: var(--color1);
 }
 
 #cueText {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
     text-align: center;
-    font-family: "Roboto",sans-serif;
 }
 
 #currentExerciseContainer {
-    font-size: 70px;
+    font-size: clamp(40px, 5vw, 100vw);
     font-weight: bold;
     color: var(--color1);
+    font-family: "Roboto",sans-serif;
 }
 
 #nextExerciseContainer {
-    font-size: 40px;
+    font-size: clamp(30px, 3.5vw, 100vw);
     font-weight: bold;
     color: var(--color2);
+    font-family: "Roboto",sans-serif;
 }
 
 #cueSpecific {
@@ -184,8 +197,13 @@ input {
 }
 
 #completeBtn, #previousExerciseBtn {
-    font-size: 30px;
-    padding-bottom: 10px;
+    font-size: clamp(10px, 30px, 5vw);
+    padding: 0 0.4em 0.2em;
+    box-shadow: var(--color1) 0.07em 0.2em 0.3em, var(--color2) 0 -0.07em 0 inset;
+}
+
+#completeBtn:hover, #previousExerciseBtn:hover {
+    box-shadow: var(--color1) 0.07em 0.2em 0.15em, var(--color2) 0 0 0 inset;
 }
 
 /*TIMER ONLY*/
@@ -194,28 +212,25 @@ input {
     text-align: left;
 }
 
-.progress-bar {
+#progressContainer {
     display: flex;
-    align-items: center;
     justify-content: center;
+    align-content: center;
     width: 100%;
-    gap: 50vmax;
+    gap: 50vw;
 }
 
 #myProgress {
-    position: fixed;
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    width: 50vmax;
+    position: absolute;
+    width: clamp(60px, 50vw, 100vw);
     height: 1em;
     background-color: transparent;
-    box-shadow: 3px 5px 12px var(--color1); /* Shadow effect */
+    box-shadow: 3px 5px 12px var(--color1);
     border-radius: 15em;
-    box-sizing: border-box;
 }
 
 #myBar {
+    position: absolute;
     width: 0;
     height: 100%;
     background: linear-gradient(90deg, var(--color2), var(--color1));
@@ -224,17 +239,18 @@ input {
 }
 
 #progressLabel {
-    width: 4em; /* Fixed width */
+    margin-top: 4px;
+    width: 4em;
     text-align: right;
     font-family: "Roboto",sans-serif;
     font-weight: bold;
-    font-size: clamp(0.5em, 1.5vmax, 1em);
+    font-size: clamp(0.5em, 1.5vw, 1em);
 }
 
 #workOrRest {
     text-align: center;
     font-family: "Roboto",sans-serif;
-    font-size: 5vmax;
+    font-size: clamp(30px, 4vw, 100vw);
     font-weight: bold;
 }
 
@@ -263,19 +279,19 @@ h1, #repeatDropdownContainer, #restDropdownContainer, #roundDropdownContainer, #
 }
 
 #repeatDropdownContainer {
-    margin-left: 20px;
+    margin-left: 1em;
 }
 
 #restDropdownContainer {
-    margin-left: 42px;
+    margin-left: 1.52em;
 }
 
 #roundDropdownContainer {
-    margin-left: 23px;
+    margin-left: 0.95em;
 }
 
 #roundRestDropdownContainer {
-    margin-left: 53px;
+    margin-left: 2em;
 }
 
 
