@@ -39,7 +39,7 @@
             </div>
             <button class="plus-minus" onclick="addRows()">+</button>
             <div class="repeat-container">
-                <h3>Rounds</h3>
+                <h1>Rounds</h1>
                 <div id="repeatDropdownContainer"></div>
             </div>
 
@@ -50,8 +50,8 @@
                 <div id="nextExerciseContainer"></div>
             </div>
             <div id="cueSpecific">
-                <button id="previousExerciseBtn" style="display: none;">←</button>
-                <button id="completeBtn" style="display: none;">→</button>
+                <button id="previousExerciseBtn" class="content">←</button>
+                <button id="completeBtn" class="content">→</button>
             </div>
         </div>
     </div>
@@ -67,23 +67,23 @@
             <button class="plus-minus" onclick="addWork()">+</button>
             <button class="plus-minus" onclick="removeWork()">-</button>
             <div>
-                <h3 id="exerciseRestHeader">Rest</h3>
+                <h1 id="exerciseRestHeader">Rest</h1>
                 <div id="restDropdownContainer"></div>
             </div>
             <div>
-                <h3 id="roundRestHeader" style="display: none;">Rest (round)</h3>
-                <div id="roundRestDropdownContainer" style="display: none;"></div>
+                <h1 id="roundRestHeader" class="content">Rest (round)</h1>
+                <div id="roundRestDropdownContainer" class="content"></div>
             </div>
             <div>
-                <h3 id="roundHeader">Rounds</h3>
+                <h1 id="roundHeader">Rounds</h1>
                 <div id="roundDropdownContainer"></div>
             </div>
         </div>
         <div id="timerScreen">
             <div id="workOrRest"></div>
             <div id="countdown" style="display: none;"></div>
-            <div id="progressContainer" class="progress-bar" style="display: none;">
-                <button id="pauseResumeBtn" style="display: none;">⏸</button>
+            <div id="progressContainer" class="progress-bar content">
+                <button id="pauseResumeBtn" class="content">⏸</button>
                 <div id="myProgress">
                     <div id="myBar"></div>
                 </div>

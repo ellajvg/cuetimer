@@ -4,78 +4,25 @@
     --color3: #f3f3f3;
 }
 
-h1, h2, h3, h4, h5, h6 {
-    font-family: "Roboto", sans-serif;
-    font-size: 200%;
-    color: var(--color1);
-}
-
-body {
-    background: white;
-    color: var(--color1);
-}
-
 .content {
     display: none;
 }
 
-.flex-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 90vh;
-    gap: 80px;
-}
-
-#cues, #timer {
-    border: 40px solid var(--color3);
-    border-radius: 30px;
-    background: var(--color3);
-}
-
-table {
-    font-family: "Roboto", sans-serif;
-    font-size: 200%;
-    color: var(--color1);
-}
-
-#cueTable th {
-    text-align: left;
-    padding-right: 50px;
-}
-
-#timerTable th {
-    text-align: left;
-    padding-right: 30px;
-}
-
-input {
-    height: 30px;
-    width: 150px;
-    font-size: 16px;
-    border-radius: 10px;
-    border: 2px solid var(--color2);
-    color: var(--color1);
-}
-
-/*buttons*/
+/*HOMEPAGE*/
 button {
-    align-items: center;
     background-color: var(--color3);
-    border-radius: 10px;
+    border-radius: 0.5em;
     border-width: 0;
-    box-shadow: var(--color1) 3px 5px 12px, var(--color2) -1px -4px 0 inset;
+    box-shadow: var(--color1) 0.21vmax 0.35vmax 0.8vmax, var(--color2) -0.05em -0.2em 0 inset;
     color: var(--color1);
     cursor: pointer;
     font-family: "Webstorm mono",monospace;
-    padding-left: 16px;
-    padding-right: 16px;
     transition: box-shadow .15s,transform .15s;
 }
 
 button:hover {
-    box-shadow: var(--color1) 3px 5px 6px, var(--color2) 0 -2px 0 inset;
-    transform: translateY(2px);
+    box-shadow: var(--color1) 0.21vmax 0.35vmax 0.42vmax, var(--color2) 0 -0.1em 0 inset;
+    transform: translateY(0.14vmax);
 }
 
 #buttons {
@@ -83,183 +30,134 @@ button:hover {
     position: fixed;
     top: 45%;
     left: 50%;
-    transform: translate(-50%, -50%); /* Adjust position to center it */
+    transform: translate(-50%, -50%);
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 60px;
+    gap: 7.7vh;
 }
 
 #cueBtn, #timerBtn, #bothBtn {
-    height: 70px;
-    font-size: 25px;
-}
-
-.plus-minus, .colors, #pauseResumeBtn {
-    font-size: 18px;
-    height: 30px;
-    padding-left: 10px;
-    padding-right: 10px;
-    border-radius: 30px;
-    box-shadow: var(--color1) 1px 3px 5px, var(--color2) 0 -1px 0 inset;
-}
-
-.plus-minus:hover, .colors:hover, #pauseResumeBtn:hover {
-    box-shadow: var(--color1) 1px 3px 2px, var(--color2) 0 0 0 inset;
-    transform: translateY(2px);
+    padding: 3vmin;
+    font-size: 4vmin;
 }
 
 #themes {
     display: flex;
     position: fixed;
-    gap: 10px;
+    gap: 0.7vmax;
 }
 
 #pink {
     color: hotpink;
     background-color: #fff4f8;
-    box-shadow: hotpink 1px 3px 5px, #ffb7d8 0 -1px 0 inset;
+    box-shadow: hotpink 0.07vmax 0.21vmax 0.3vmax, #ffb7d8 0 -0.07vmax 0 inset;
 }
 
 #pink:hover {
-    box-shadow: hotpink 1px 3px 2px, #ffb7d8 0 0 0 inset;
-    transform: translateY(2px);
+    box-shadow: hotpink 0.07vmax 0.21vmax 0.14vmax, #ffb7d8 0 0 0 inset;
 }
 
 #blue {
     color: royalblue;
     background-color: #f1f4ff;
-    box-shadow: royalblue 1px 3px 5px, #a3b8ef 0 -1px 0 inset;
+    box-shadow: royalblue 0.07vmax 0.21vmax 0.3vmax, #a3b8ef 0 -0.07vmax 0 inset;
 }
 
 #blue:hover {
-    box-shadow: royalblue 1px 3px 2px, #a3b8ef 0 0 0 inset;
-    transform: translateY(2px);
+    box-shadow: royalblue 0.07vmax 0.21vmax 0.14vmax, #a3b8ef 0 0 0 inset;
 }
 
 #gray {
     color: #353535;
     background-color: #f3f3f3;
-    box-shadow: #353535 1px 3px 5px, #bababa 0 -1px 0 inset;
+    box-shadow: #353535 0.07vmax 0.21vmax 0.3vmax, #bababa 0 -0.07vmax 0 inset;
 }
 
 #gray:hover {
-    box-shadow: #353535 1px 3px 2px, #bababa 0 0 0 inset;
-    transform: translateY(2px);
+    box-shadow: #353535 0.07vmax 0.21vmax 0.14vmax, #bababa 0 0 0 inset;
+}
+
+/*TIMER & CUES*/
+.plus-minus, .colors, #pauseResumeBtn {
+    font-size: 1.2vmax;
+    height: 2vmax;
+    padding-left: 0.7vmax;
+    padding-right: 0.7vmax;
+    border-radius: 1em;
+    box-shadow: var(--color1) 0.07vmax 0.21vmax 0.3vmax, var(--color2) 0 -0.07vmax 0 inset;
+}
+
+.plus-minus:hover, .colors:hover, #pauseResumeBtn:hover {
+    box-shadow: var(--color1) 0.07vmax 0.21vmax 0.14vmax, var(--color2) 0 0 0 inset;
+}
+
+.flex-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 90vh;
+    gap: 5vw;
+}
+
+#cues, #timer {
+    border: 1.2em solid var(--color3);
+    border-radius: 1em;
+    background: var(--color3);
+    font-family: "Roboto", sans-serif;
+    font-size: 2.2vmax;
+    color: var(--color1);
 }
 
 #cuesStartBtn, #timerStartBtn, #bothStartBtn, #backBtn {
-    font-size: 16px;
-    height: 50px;
+    font-size: clamp(2vh, 1.1vmax, 2em);
+    padding: 1em;
 }
 
 .start-btn {
     position: fixed;
-    bottom: 5%;  /* Position from the bottom of the viewport */
-    right: 3%;     /* Adjust as needed */
+    bottom: 4vmin;
+    right: 4vmin;
 }
 
 .back-btn {
     position: fixed;
-    bottom: 5%;  /* Position from the bottom of the viewport */
-    left: 3%;      /* Adjust as needed */
+    bottom: 4vmin;
+    left: 4vmin;
 }
 
 #countdown {
     display: flex;
     justify-content: center;
     font-family: "Roboto",sans-serif;
-    font-size: 2000%;
+    font-size: 22.3vmax;
     color: var(--color2);
     align-items: center;
 }
 
-select {
-    min-width: 70px;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    font-size: 30px;
-    outline: 0;
-    border: 0;
-    background-color: transparent;
-    color: var(--color1);
-    font-family: "Roboto",sans-serif;
-}
-
-select option {
-    font-size: 50%;
-    background-color: var(--color3);
-    color: var(--color1);
-}
-
-.progress-bar {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    gap: 10px;
-}
-
-#pauseResumeBtn {
-    position: fixed;
-    left: 22%;
-}
-
-#myProgress {
-    position: fixed;
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    width: 50%;
-    height: 30px;
-    background-color: transparent;
-    box-shadow: 3px 5px 12px var(--color1); /* Shadow effect */
-    border-radius: 15px;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-#myBar {
-    width: 0;
-    height: 100%;
-    background: linear-gradient(90deg, var(--color2), var(--color1));
-    border-radius: 13px;
-    transition: width 1s ease;
-}
-
-#progressLabel {
+#nextExercise {
     position: relative;
-    left: 48%;
+    color: var(--color2);
+    top: 6vh;
+    text-align: right;
     font-family: "Roboto",sans-serif;
+    font-size: 2.2vmax;
     font-weight: bold;
 }
 
-h3, #repeatDropdownContainer, #restDropdownContainer, #roundDropdownContainer, #roundRestDropdownContainer {
-    display: inline-block;
-    vertical-align: middle;
+
+/*CUES ONLY*/
+#cueTable th {
+    padding-right: 3.5vmax;
+    text-align: left;
 }
 
-#repeatDropdownContainer {
-    margin-left: 20px;
-}
-
-#restDropdownContainer {
-    margin-left: 42px;
-}
-
-#roundDropdownContainer {
-    margin-left: 23px;
-}
-
-#roundRestDropdownContainer {
-    margin-left: 53px;
-}
-
-#workOrRest {
-    text-align: center;
-    font-family: "Roboto",sans-serif;
-    font-size: 40px;
-    font-weight: bold;
+input {
+    height: 2.2vmax;
+    width: 11vmax;
+    border-radius: 0.8vmax;
+    border: 0.18vmax solid var(--color2);
+    color: var(--color1);
 }
 
 #cueText {
@@ -290,16 +188,95 @@ h3, #repeatDropdownContainer, #restDropdownContainer, #roundDropdownContainer, #
     padding-bottom: 10px;
 }
 
-#nextExercise {
-    position: relative;
-    color: var(--color2);
-    top: 60px;
+/*TIMER ONLY*/
+#timerTable th {
+    padding-right: 1.2em; /*CHANGE*/
+    text-align: left;
+}
+
+.progress-bar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    gap: 50vmax;
+}
+
+#myProgress {
+    position: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 50vmax;
+    height: 1em;
+    background-color: transparent;
+    box-shadow: 3px 5px 12px var(--color1); /* Shadow effect */
+    border-radius: 15em;
+    box-sizing: border-box;
+}
+
+#myBar {
+    width: 0;
+    height: 100%;
+    background: linear-gradient(90deg, var(--color2), var(--color1));
+    border-radius: 3em;
+    transition: width 1s ease;
+}
+
+#progressLabel {
+    width: 4em; /* Fixed width */
     text-align: right;
     font-family: "Roboto",sans-serif;
-    font-size: 30px;
+    font-weight: bold;
+    font-size: clamp(0.5em, 1.5vmax, 1em);
+}
+
+#workOrRest {
+    text-align: center;
+    font-family: "Roboto",sans-serif;
+    font-size: 5vmax;
     font-weight: bold;
 }
 
+/*DROPDOWNS*/
+h1 {
+    font-size: 100%;
+}
+
+select {
+    padding: 0.4em 0.2em;
+    font-size: 1em;
+    border: 0;
+    background-color: transparent;
+    color: var(--color1);
+    font-family: "Roboto",sans-serif;
+}
+
+select option {
+    background-color: var(--color3);
+    color: var(--color1);
+}
+
+h1, #repeatDropdownContainer, #restDropdownContainer, #roundDropdownContainer, #roundRestDropdownContainer {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+#repeatDropdownContainer {
+    margin-left: 20px;
+}
+
+#restDropdownContainer {
+    margin-left: 42px;
+}
+
+#roundDropdownContainer {
+    margin-left: 23px;
+}
+
+#roundRestDropdownContainer {
+    margin-left: 53px;
+}
 
 
 

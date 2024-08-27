@@ -157,7 +157,7 @@ function startTimerWorkout(exercise) {
         document.getElementById('countdown').style.display = 'flex';
         document.getElementById('workOrRest').textContent = "Your workout begins in...";
         if (together) {
-            document.getElementById('timerScreen').style.height = '525px';
+            document.getElementById('timerScreen').style.height = 'clamp(43vh, 40vmax, 100vh)';
             document.getElementById('nextExercise').textContent = "First up: " + exercise;
         }
     }, 1000);
