@@ -42,20 +42,84 @@ button:hover {
     font-size: clamp(20px, 2vw, 100vw);
 }
 
+
 #themes {
     display: flex;
     position: fixed;
     gap: 1em;
 }
 
+
+#menu {
+    position: fixed;
+    top: 0;
+    right: 0.2em;
+    display: block;
+    z-index: 1;
+}
+
+#menuBtn {
+    margin-top: 0.1em;
+    color: var(--color1);
+    background: transparent;
+    border: none;
+    box-shadow: none;
+}
+
+#menuContent {
+    z-index: 1;
+    position: fixed;
+    right: 0;
+    flex-direction: column;
+    background-color: var(--color3);
+    padding: 1em;
+    margin-right: 2.2em;
+    border-radius: 1em;
+    min-width: 60px;
+    gap: 2vh;
+    border: 2px solid white;
+    color: var(--color1);
+    font-size: clamp(14px, 22px, 3.5vw);
+    font-family: "Webstorm mono", monospace;
+    font-weight: bold;
+}
+
+#legend {
+    font-size: clamp(10px, 14px, 2vw);
+    font-weight: normal;
+    color: var(--color2);
+}
+
+.premadeWs {
+    font-weight: normal;
+    font-size: clamp(12px, 18px, 3vw);
+    background: transparent;
+    box-shadow: none;
+    font-family: "Webstorm mono", monospace;
+    text-align: left;
+    padding: 0;
+}
+
+.premadeWs:hover {
+    font-weight: bold;
+    box-shadow: none;
+    transform: scale(1.05);
+}
+
+#menuBtn:hover {
+    font-weight: bold;
+    box-shadow: none;
+    transform: scale(1.15);
+}
+
 #pink {
-    color: hotpink;
+    color: #ff3eab;
     background-color: #fff4f8;
-    box-shadow: hotpink 0.07em 0.2em 0.3em, #ffb7d8 0 -0.07em 0 inset;
+    box-shadow: #ff3eab 0.07em 0.2em 0.3em, #ffb7d8 0 -0.07em 0 inset;
 }
 
 #pink:hover {
-    box-shadow: hotpink 0.07em 0.2em 0.1em, #ffb7d8 0 0 0 inset;
+    box-shadow: #ff3eab 0.07em 0.2em 0.1em, #ffb7d8 0 0 0 inset;
 }
 
 #blue {
@@ -117,7 +181,7 @@ button:hover {
 }
 
 #cuesStartBtn, #timerStartBtn, #bothStartBtn, #backBtn {
-    font-size: clamp(10px, 20px, 2vh);
+    font-size: clamp(10px, 20px, 3vh);
     padding: 1em;
 }
 
@@ -133,8 +197,14 @@ button:hover {
     left: 4vmin;
 }
 
+#timerScreen { /*EDIT, MAKE MORE FLEXY*/
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    gap: 2vh;
+}
+
 #countdown {
-    min-width: clamp(40vw, 600px, 80vw);
     display: flex;
     justify-content: center;
     font-family: "Roboto",sans-serif;
@@ -144,15 +214,12 @@ button:hover {
 }
 
 #nextExercise {
-    position: relative;
     color: var(--color2);
-    top: 1.5em;
     text-align: right;
     font-family: "Roboto",sans-serif;
-    font-size: clamp(26px, 2.5vw, 100vw);
+    font-size: clamp(18px, 30px, 3.5vw);
     font-weight: bold;
 }
-
 
 /*CUES ONLY*/
 #cueTable th {
@@ -217,16 +284,16 @@ input {
     justify-content: center;
     align-content: center;
     width: 100%;
-    gap: 50vw;
+    gap: clamp(100px, 700px, 70vw);
 }
 
 #myProgress {
     position: absolute;
-    width: clamp(60px, 50vw, 100vw);
-    height: 1em;
+    width: clamp(100px, 700px, 70vw);
+    height: clamp(20px, 4vmin, 40px);
     background-color: transparent;
     box-shadow: 3px 5px 12px var(--color1);
-    border-radius: 15em;
+    border-radius: 6em;
 }
 
 #myBar {
@@ -250,7 +317,7 @@ input {
 #workOrRest {
     text-align: center;
     font-family: "Roboto",sans-serif;
-    font-size: clamp(30px, 4vw, 100vw);
+    font-size: clamp(30px, 60px, 6vw);
     font-weight: bold;
 }
 
@@ -291,7 +358,11 @@ h1, #repeatDropdownContainer, #restDropdownContainer, #roundDropdownContainer, #
 }
 
 #roundRestDropdownContainer {
-    margin-left: 2em;
+    margin-left: 1.7em;
+}
+
+.plus-minus {
+    margin-bottom: 1em;
 }
 
 

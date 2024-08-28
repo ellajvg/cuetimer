@@ -33,6 +33,8 @@ function addRows() {
     table.appendChild(tbody);
 }
 
+
+
 document.getElementById('completeBtn').addEventListener('click', () => {
     completeExercise(currentExerciseIndex);
 });
@@ -59,7 +61,7 @@ function createExerciseArray() {
     exercises = Array.from(rows).map(row => {
             const cells = row.querySelectorAll('td');
             return {
-                exercise: cells[0].querySelector('input').value, // Trim whitespace
+                exercise: cells[0].querySelector('input').value,
                 reps: cells[1].querySelector('select').value,
                 sets: cells[2].querySelector('select').value,
             };

@@ -23,6 +23,7 @@ function addWork() {
         head.textContent = 'Work';
 
     } else {
+        console.log('here');
         tbody.rows[0].querySelector('th').textContent = 'Work period ' + 1;
 
         head.textContent = 'Work period ' + exercise;
@@ -35,9 +36,9 @@ function addWork() {
     }
 
     cell.appendChild(createTimeDropdown());
-    row.appendChild(head); // Add the <th> directly to the row
-    row.appendChild(cell); // Add the <td> directly to the row
-    tbody.appendChild(row); // Add the row to the <tbody>
+    row.appendChild(head);
+    row.appendChild(cell);
+    tbody.appendChild(row);
 
     exercise++;
 }
@@ -157,8 +158,7 @@ function startTimerWorkout(exercise) {
         document.getElementById('countdown').style.display = 'flex';
         document.getElementById('workOrRest').textContent = "Your workout begins in...";
         if (together) {
-            document.getElementById('nextExercise').style.minHeight = '2em';
-
+            document.getElementById('nextExercise').style.marginTop = '1em';
             document.getElementById('nextExercise').textContent = "First up: " + exercise;
         }
     }, 1000);

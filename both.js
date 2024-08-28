@@ -1,13 +1,5 @@
 let together = false;
 
-document.getElementById('bothBtn').addEventListener('click', () => {
-    document.getElementById('roundHeader').style.display = 'none';
-    document.getElementById('roundDropdownContainer').style.display = 'none';
-    const flexContainer = document.querySelector('.flex-container');
-    flexContainer.classList.add('portrait-mode');
-    together = true;
-});
-
 document.querySelectorAll('button').forEach(button => {
     button.addEventListener('click', () => {
         document.getElementById('clickSound').play();
@@ -15,7 +7,7 @@ document.querySelectorAll('button').forEach(button => {
 });
 
 document.getElementById('pink').addEventListener('click', () => {
-    document.documentElement.style.setProperty('--color1', 'hotpink');
+    document.documentElement.style.setProperty('--color1', '#ff3eab');
     document.documentElement.style.setProperty('--color2', '#ffb7d8');
     document.documentElement.style.setProperty('--color3', '#fff4f8');
     const textContent = document.getElementById('workOrRest').textContent;
@@ -61,7 +53,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const savedColor = localStorage.getItem('savedColor');
 
     if (savedColor === 'hotpink') {
-        document.documentElement.style.setProperty('--color1', 'hotpink');
+        document.documentElement.style.setProperty('--color1', '#ff3eab');
         document.documentElement.style.setProperty('--color2', '#ffb7d8');
         document.documentElement.style.setProperty('--color3', '#fff4f8');
     } else if (savedColor === 'royalblue') {
@@ -91,7 +83,11 @@ function showContent(content) {
         document.getElementById('cues').style.display = 'block';
         document.getElementById('cueSpecific').style.display = 'none';
         document.getElementById('timer').style.display = 'block';
+        document.getElementById('timerSpecific').style.display = 'none';
         document.getElementById('bothStartBtn').style.display = 'block';
+        const flexContainer = document.querySelector('.flex-container');
+        flexContainer.classList.add('portrait-mode');
+        together = true;
     }
     document.getElementById('buttons').style.display = 'none';
 }

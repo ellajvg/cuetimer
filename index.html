@@ -8,10 +8,35 @@
 </head>
 <body>
 
+
 <div id="themes">
     <button id="pink" class="colors">P</button>
     <button id="blue" class="colors">B</button>
     <button id="gray" class="colors">G</button>
+</div>
+
+<div id="menu">
+    <button id="menuBtn">
+        <svg width="clamp(30px, 2.8vw, 100vw)" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M4 6H20M4 12H20M4 18H20" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+    </button>
+    <div id="menuContent" class="content">Try my workouts!
+        <button id="gluteHam" class="premadeWs">W1: Glutes & hammies</button>
+        <button id="gluteFin" class="premadeWs">W1: Finisher</button>
+        <button id="chestTri" class="premadeWs">W2: Chest, shoulder & tri</button>
+        <button id="plankFin" class="premadeWs">W2: Finisher</button>
+        <button id="quadCalf" class="premadeWs">W3: Quads & calves</button>
+        <button id="legFin" class="premadeWs">W3: Finisher</button>
+        <button id="backBi" class="premadeWs">W4: Back & bi</button>
+        <button id="hollowFin" class="premadeWs">W4: Finisher</button>
+        <div id="legend">
+            <div>GB=Glute bridge  DD=Downward dog</div>
+            <div>HE=Heel-elevated  FE=Foot-elevated</div>
+            <div>W=Weighted  BW=Bodyweight</div>
+        </div>
+    </div>
+
 </div>
 
 <div id="buttons">
@@ -74,14 +99,14 @@
                 <h1 id="roundRestHeader" class="content">Rest (round)</h1>
                 <div id="roundRestDropdownContainer" class="content"></div>
             </div>
-            <div>
+            <div id="timerSpecific">
                 <h1 id="roundHeader">Rounds</h1>
                 <div id="roundDropdownContainer"></div>
             </div>
         </div>
         <div id="timerScreen">
             <div id="workOrRest"></div>
-            <div id="countdown" style="display: none;"></div>
+            <div id="countdown" class="content"></div>
             <div id="progressContainer" class="progress-bar content">
                 <button id="pauseResumeBtn" class="content">⏸</button>
                 <div id="myProgress">
@@ -112,6 +137,7 @@
 <script src="timer.js"></script>
 <script src="cues.js"></script>
 <script src="both.js"></script>
+<script src="premade.js"></script>
 </body>
 </html>
 
