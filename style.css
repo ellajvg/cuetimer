@@ -229,7 +229,7 @@ button:hover {
 
 input {
     height: clamp(22px, 2.2vw, 30vw);
-    width: clamp(100px, 11vw, 60vw);
+    width: clamp(100px, 9vw, 60vw);
     border-radius: 0.8em;
     border: 0.18em solid var(--color2);
     color: var(--color1);
@@ -250,10 +250,18 @@ input {
     font-family: "Roboto",sans-serif;
 }
 
+
 #nextExerciseContainer {
     font-size: clamp(30px, 3.5vw, 100vw);
     font-weight: bold;
     color: var(--color2);
+    font-family: "Roboto",sans-serif;
+}
+
+#cueProgress {
+    font-size: clamp(18px, 2vw, 100vw);
+    font-weight: bold;
+    color: var(--color1);
     font-family: "Roboto",sans-serif;
 }
 

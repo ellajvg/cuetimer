@@ -116,6 +116,7 @@ function createPeriodArray() {
 }
 
 function startTimerWorkout(exercise) {
+    document.getElementById('menu').style.display = 'none';
     document.getElementById('currentExerciseContainer').style.display = 'none';
     document.getElementById('nextExerciseContainer').style.display = 'none';
 
@@ -176,6 +177,10 @@ function startTimerWorkout(exercise) {
     });
 
     function startNextInterval(duration) {
+        let rootStyles = getComputedStyle(document.documentElement);
+        let color1 = rootStyles.getPropertyValue('--color1');
+        let color2 = rootStyles.getPropertyValue('--color2');
+
         timer = duration;
 
         const display = document.getElementById('countdown');
@@ -185,10 +190,6 @@ function startTimerWorkout(exercise) {
         const nextExercise = document.getElementById('nextExerciseContainer');
 
         interval = setInterval(() => {
-            let rootStyles = getComputedStyle(document.documentElement);
-            let color1 = rootStyles.getPropertyValue('--color1');
-            let color2 = rootStyles.getPropertyValue('--color2');
-
             if (workoutStarted && width < 100) {
                 setTimeout(() => {
                     width += (100/totalTime);
@@ -322,9 +323,11 @@ function startTimerWorkout(exercise) {
                         }, 1000);
                     }
                 } else {
+
                     remainingTime = timer;
                 }
             }
         }, 1000);
     }
 }
+

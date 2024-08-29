@@ -52,7 +52,7 @@ function goBack() {
 document.addEventListener('DOMContentLoaded', () => {
     const savedColor = localStorage.getItem('savedColor');
 
-    if (savedColor === 'hotpink') {
+    if (savedColor === '#ff3eab') {
         document.documentElement.style.setProperty('--color1', '#ff3eab');
         document.documentElement.style.setProperty('--color2', '#ffb7d8');
         document.documentElement.style.setProperty('--color3', '#fff4f8');
@@ -112,13 +112,10 @@ function createNumberDropdown(min, max) {
 }
 
 function startBothWorkout() {
-    let repeats = parseInt(document.getElementById('repeatDropdownContainer').querySelector('select').value, 10);
+    document.getElementById('menu').style.display = 'none';
+
     let exercises = createExerciseArray();
-    let numberOfExercises = 0;
-    for (let i = 0; i < exercises.length; i++) {
-        numberOfExercises += parseInt(exercises[i].sets);
-    }
-    numberOfExercises *= repeats;
+    let numberOfExercises = countExercises(exercises);
 
     let workPeriods = createPeriodArray();
     let numberOfWorkPeriods = workPeriods.length;
@@ -146,3 +143,12 @@ function startBothWorkout() {
     }
 }
 
+function countExercises(exercises) {
+    let repeats = parseInt(document.getElementById('repeatDropdownContainer').querySelector('select').value, 10);
+    let numberOfExercises = 0;
+    for (let i = 0; i < exercises.length; i++) {
+        numberOfExercises += exercises[i].sets;
+    }
+    numberOfExercises *= repeats;
+    return numberOfExercises;
+}
