@@ -8,11 +8,10 @@
 </head>
 <body>
 
-
 <div id="themes">
-    <button id="pink" class="colors">P</button>
-    <button id="blue" class="colors">B</button>
-    <button id="gray" class="colors">G</button>
+    <button id="pink" class="circle-btn">P</button>
+    <button id="blue" class="circle-btn">B</button>
+    <button id="gray" class="circle-btn">G</button>
 </div>
 
 <div id="menu">
@@ -31,18 +30,18 @@
         <button id="backBi" class="premadeWs">D4: Back & bi</button>
         <button id="hollowFin" class="premadeWs">D4: Finisher</button>
         <div id="legend">
-            <div>GB=Glute bridge  DD=Downward dog</div>
-            <div>HE=Heel-elevated  FE=Foot-elevated</div>
-            <div>W=Weighted  BW=Bodyweight</div>
+            <div>GB=Glute bridge DD=Downward dog</div>
+            <div>FE=Foot-elevated HE=Heel-elevated</div>
+            <div>BW=Bodyweight W=Weighted</div>
         </div>
     </div>
 
 </div>
 
-<div id="buttons">
-    <button id="cueBtn" onclick="showContent('cues')">I want cues</button>
-    <button id="timerBtn" onclick="showContent('timer')">I want a timer</button>
-    <button id="bothBtn" onclick="showContent('both')">I want both</button>
+<div id="homeButtons">
+    <button id="cueBtn" class="homeBtn" onclick="showContent('cues')">I want cues</button>
+    <button id="timerBtn" class="homeBtn" onclick="showContent('timer')">I want a timer</button>
+    <button id="bothBtn" class="homeBtn" onclick="showContent('both')">I want both</button>
 </div>
 
 <div class="flex-container">
@@ -63,10 +62,10 @@
                     </tbody>
                 </table>
             </div>
-            <button class="plus-minus" onclick="addRows()">+</button>
-            <div class="repeat-container">
+            <button class="circle-btn" onclick="addRows()">+</button>
+            <div>
                 <h1>Rounds</h1>
-                <div id="repeatDropdownContainer"></div>
+                <div id="repeatDropdownContainer" class="dropdown"></div>
             </div>
 
         </div>
@@ -76,9 +75,9 @@
                 <div id="nextExerciseContainer"></div>
             </div>
             <div id="cueSpecific">
-                <button id="previousExerciseBtn" class="content">←</button>
+                <button id="previousExerciseBtn" class="content prev-comp">←</button>
                 <div id="cueProgress"></div>
-                <button id="completeBtn" class="content">→</button>
+                <button id="completeBtn" class="content prev-comp">→</button>
             </div>
         </div>
     </div>
@@ -91,26 +90,26 @@
                     </tbody>
                 </table>
             </div>
-            <button class="plus-minus" onclick="addWork()">+</button>
-            <button class="plus-minus" onclick="removeWork()">-</button>
+            <button class="circle-btn" onclick="addWork()">+</button>
+            <button class="circle-btn" onclick="removeWork()">-</button>
             <div>
                 <h1 id="exerciseRestHeader">Rest</h1>
-                <div id="restDropdownContainer"></div>
+                <div id="restDropdownContainer" class="dropdown"></div>
             </div>
             <div>
                 <h1 id="roundRestHeader" class="content">Rest (round)</h1>
-                <div id="roundRestDropdownContainer" class="content"></div>
+                <div id="roundRestDropdownContainer" class="content dropdown"></div>
             </div>
             <div id="timerSpecific">
                 <h1 id="roundHeader">Rounds</h1>
-                <div id="roundDropdownContainer"></div>
+                <div id="roundDropdownContainer" class="dropdown"></div>
             </div>
         </div>
         <div id="timerScreen">
             <div id="workOrRest"></div>
             <div id="countdown" class="content"></div>
             <div id="progressContainer" class="progress-bar content">
-                <button id="pauseResumeBtn" class="content">⏸</button>
+                <button id="pauseResumeBtn" class="content circle-btn">⏸</button>
                 <div id="myProgress">
                     <div id="myBar"></div>
                 </div>
@@ -122,9 +121,9 @@
 </div>
 
 <div id="startBtn" class="content start-btn">
-    <button id="cuesStartBtn" onclick="startCueWorkout()">Start</button>
-    <button id="timerStartBtn" onclick="startTimerWorkout()">Start</button>
-    <button id="bothStartBtn" onclick="startBothWorkout()">Start</button>
+    <button id="cuesStartBtn" class="start" onclick="startCueWorkout()">Start</button>
+    <button id="timerStartBtn" class="start" onclick="startTimerWorkout()">Start</button>
+    <button id="bothStartBtn" class="start" onclick="startBothWorkout()">Start</button>
 </div>
 
 <div id="back" class="content back-btn">

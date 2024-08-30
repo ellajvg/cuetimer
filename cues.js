@@ -118,10 +118,6 @@ function startCueWorkout() {
     numberOfExercises = countExercises(exercises);
     document.getElementById('cueProgress').textContent = completed + "/" + numberOfExercises;
 
-    if(exercises.length === 0) {
-        window.alert('Please add at least one exercise');
-    }
-
     displayCurrentExercise(currentExerciseIndex);
     displayNextExercise(currentExerciseIndex);
 }
@@ -205,7 +201,7 @@ function completeExercise(index) {
         } else {
             currentExerciseIndex++;
         }
-    } if (index < exercises.length && currentExerciseSet < exercises[index].sets) {
+    } else if (index < exercises.length && currentExerciseSet < exercises[index].sets) {
         currentExerciseSet++;
     } else {
         currentExerciseIndex++;
@@ -232,6 +228,7 @@ function previousExercise(index, set) {
 
     if (exercises.length === 1 && index === 1) {
         currentExerciseIndex = 0;
+        index = 0;
         set++;
     }
 

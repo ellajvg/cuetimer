@@ -1,3 +1,4 @@
+/*WHOLE DOC*/
 :root {
     --color1: #353535;
     --color2: #bababa;
@@ -6,6 +7,11 @@
 
 .content {
     display: none;
+}
+
+html {
+    font-family: "Roboto", sans-serif;
+    color: var(--color1);
 }
 
 /*HOMEPAGE*/
@@ -25,23 +31,21 @@ button:hover {
     transform: translateY(0.15em);
 }
 
-#buttons {
+#homeButtons {
     display: flex;
+    flex-direction: column;
+    align-items: center;
     position: fixed;
     top: 45%;
     left: 50%;
     transform: translate(-50%, -50%);
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
     gap: 7.5vh;
 }
 
-#cueBtn, #timerBtn, #bothBtn {
+.homeBtn {
     padding: 0.8em;
     font-size: clamp(20px, 2vw, 100vw);
 }
-
 
 #themes {
     display: flex;
@@ -49,28 +53,58 @@ button:hover {
     gap: 1em;
 }
 
+#pink {
+    color: #ff079e;
+    background-color: #fff4f8;
+    box-shadow: #ff079e 0.07em 0.2em 0.3em, #ffb7d8 0 -0.07em 0 inset;
+}
+
+#pink:hover {
+    box-shadow: #ff079e 0.07em 0.2em 0.1em, #ffb7d8 0 0 0 inset;
+}
+
+#blue {
+    color: #124ce4;
+    background-color: #f1f4ff;
+    box-shadow: #124ce4 0.07em 0.2em 0.3em, #a3b8ef 0 -0.07em 0 0 inset;
+}
+
+#blue:hover {
+    box-shadow: #124ce4 0.07em 0.2em 0.1em, #a3b8ef 0 0 0 inset;
+}
+
+#gray {
+    color: #353535;
+    background-color: #f3f3f3;
+    box-shadow: #353535 0.07em 0.2em 0.3em, #bababa 0 -0.07em 0 inset;
+}
+
+#gray:hover {
+    box-shadow: #353535 0.07em 0.2em 0.1em, #bababa 0 0 0 inset;
+}
 
 #menu {
     position: fixed;
-    top: 0;
+    top: 0.1em;
     right: 0.2em;
-    display: block;
     z-index: 1;
 }
 
 #menuBtn {
-    margin-top: 0.1em;
-    color: var(--color1);
     background: transparent;
-    border: none;
     box-shadow: none;
 }
 
+#menuBtn:hover {
+    font-weight: bold;
+    box-shadow: none;
+    transform: scale(1.15);
+}
+
 #menuContent {
-    z-index: 1;
     position: fixed;
-    right: 0;
     flex-direction: column;
+    right: 0;
     background-color: var(--color3);
     padding: 1em;
     margin-right: 2.2em;
@@ -78,7 +112,6 @@ button:hover {
     min-width: 60px;
     gap: 2vh;
     border: 2px solid white;
-    color: var(--color1);
     font-size: clamp(14px, 22px, 3.5vw);
     font-family: "Webstorm mono", monospace;
     font-weight: bold;
@@ -93,7 +126,6 @@ button:hover {
 .premadeWs {
     font-weight: normal;
     font-size: clamp(12px, 18px, 3vw);
-    background: transparent;
     box-shadow: none;
     font-family: "Webstorm mono", monospace;
     text-align: left;
@@ -106,69 +138,13 @@ button:hover {
     transform: scale(1.05);
 }
 
-#menuBtn:hover {
-    font-weight: bold;
-    box-shadow: none;
-    transform: scale(1.15);
-}
-
-#pink {
-    color: #ff3eab;
-    background-color: #fff4f8;
-    box-shadow: #ff3eab 0.07em 0.2em 0.3em, #ffb7d8 0 -0.07em 0 inset;
-}
-
-#pink:hover {
-    box-shadow: #ff3eab 0.07em 0.2em 0.1em, #ffb7d8 0 0 0 inset;
-}
-
-#blue {
-    color: royalblue;
-    background-color: #f1f4ff;
-    box-shadow: royalblue 0.07em 0.2em 0.3em, #a3b8ef 0 -0.07em 0 0 inset;
-}
-
-#blue:hover {
-    box-shadow: royalblue 0.07em 0.2em 0.1em, #a3b8ef 0 0 0 inset;
-}
-
-#gray {
-    color: #353535;
-    background-color: #f3f3f3;
-    box-shadow: #353535 0.07em 0.2em 0.3em, #bababa 0 -0.07em 0 inset;
-}
-
-#gray:hover {
-    box-shadow: #353535 0.07em 0.2em 0.1em, #bababa 0 0 0 inset;
-}
-
 /*TIMER & CUES*/
-.plus-minus, .colors, #pauseResumeBtn {
-    font-size: clamp(14px, 1.2vw, 100vw);
-    padding: 0.3em 0.6em;
-    border-radius: 6em;
-    box-shadow: var(--color1) 0.07em 0.2em 0.3em, var(--color2) 0 -0.07em 0 inset;
-}
-
-.plus-minus:hover, .colors:hover, #pauseResumeBtn:hover {
-    box-shadow: var(--color1) 0.07em 0.2em 0.1em, var(--color2) 0 0 0 inset;
-}
-
 .flex-container {
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 90vh;
     gap: 5vw;
-}
-
-#cues, #timer {
-    border: 1.2em solid var(--color3);
-    border-radius: 1em;
-    background: var(--color3);
-    font-family: "Roboto", sans-serif;
-    font-size: clamp(26px, 2.2vw, 100vw);
-    color: var(--color1);
 }
 
 @media (orientation: portrait), (max-width: 700px) {
@@ -180,9 +156,11 @@ button:hover {
     }
 }
 
-#cuesStartBtn, #timerStartBtn, #bothStartBtn, #backBtn {
-    font-size: clamp(10px, 20px, 3vh);
-    padding: 1em;
+#cues, #timer {
+    border: 1.2em solid var(--color3);
+    border-radius: 1em;
+    background: var(--color3);
+    font-size: clamp(26px, 2.2vw, 100vw);
 }
 
 .start-btn {
@@ -197,7 +175,23 @@ button:hover {
     left: 4vmin;
 }
 
-#timerScreen { /*EDIT, MAKE MORE FLEXY*/
+.start, #backBtn {
+    font-size: clamp(10px, 20px, 3vh);
+    padding: 1em;
+}
+
+.circle-btn {
+    font-size: clamp(14px, 1.2vw, 100vw);
+    padding: 0.3em 0.6em;
+    border-radius: 6em;
+    box-shadow: var(--color1) 0.07em 0.2em 0.3em, var(--color2) 0 -0.07em 0 inset;
+}
+
+.circle-btn:hover {
+    box-shadow: var(--color1) 0.07em 0.2em 0.1em, var(--color2) 0 0 0 inset;
+}
+
+#timerScreen {
     display: flex;
     justify-content: center;
     flex-direction: column;
@@ -207,18 +201,16 @@ button:hover {
 #countdown {
     display: flex;
     justify-content: center;
-    font-family: "Roboto",sans-serif;
     font-size: clamp(70px, 300px, 30vw);
     color: var(--color2);
-    align-items: center;
+
 }
 
 #nextExercise {
-    color: var(--color2);
     text-align: right;
-    font-family: "Roboto",sans-serif;
     font-size: clamp(18px, 30px, 3.5vw);
     font-weight: bold;
+    color: var(--color2);
 }
 
 /*CUES ONLY*/
@@ -239,15 +231,12 @@ input {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-content: center;
-    text-align: center;
+    align-items: center;
 }
 
 #currentExerciseContainer {
     font-size: clamp(40px, 5vw, 100vw);
     font-weight: bold;
-    color: var(--color1);
-    font-family: "Roboto",sans-serif;
 }
 
 
@@ -255,42 +244,42 @@ input {
     font-size: clamp(30px, 3.5vw, 100vw);
     font-weight: bold;
     color: var(--color2);
-    font-family: "Roboto",sans-serif;
 }
 
 #cueProgress {
     font-size: clamp(18px, 2vw, 100vw);
     font-weight: bold;
-    color: var(--color1);
-    font-family: "Roboto",sans-serif;
 }
 
 #cueSpecific {
     display: flex;
     justify-content: space-between;
-    align-items: center;
 }
 
-#completeBtn, #previousExerciseBtn {
+.prev-comp {
     font-size: clamp(10px, 30px, 5vw);
     padding: 0 0.4em 0.2em;
     box-shadow: var(--color1) 0.07em 0.2em 0.3em, var(--color2) 0 -0.07em 0 inset;
 }
 
-#completeBtn:hover, #previousExerciseBtn:hover {
+.prev-comp:hover {
     box-shadow: var(--color1) 0.07em 0.2em 0.15em, var(--color2) 0 0 0 inset;
 }
 
 /*TIMER ONLY*/
 #timerTable th {
-    padding-right: 1.2em; /*CHANGE*/
-    text-align: left;
+    padding-right: 1.2em;
+}
+
+#workOrRest {
+    text-align: center;
+    font-size: clamp(30px, 60px, 6vw);
+    font-weight: bold;
 }
 
 #progressContainer {
     display: flex;
     justify-content: center;
-    align-content: center;
     width: 100%;
     gap: clamp(100px, 700px, 70vw);
 }
@@ -317,16 +306,8 @@ input {
     margin-top: 4px;
     width: 4em;
     text-align: right;
-    font-family: "Roboto",sans-serif;
     font-weight: bold;
     font-size: clamp(0.5em, 1.5vw, 1em);
-}
-
-#workOrRest {
-    text-align: center;
-    font-family: "Roboto",sans-serif;
-    font-size: clamp(30px, 60px, 6vw);
-    font-weight: bold;
 }
 
 /*DROPDOWNS*/
@@ -340,7 +321,6 @@ select {
     border: 0;
     background-color: transparent;
     color: var(--color1);
-    font-family: "Roboto",sans-serif;
 }
 
 select option {
@@ -348,7 +328,7 @@ select option {
     color: var(--color1);
 }
 
-h1, #repeatDropdownContainer, #restDropdownContainer, #roundDropdownContainer, #roundRestDropdownContainer {
+h1, .dropdown {
     display: inline-block;
     vertical-align: middle;
 }
@@ -366,12 +346,10 @@ h1, #repeatDropdownContainer, #restDropdownContainer, #roundDropdownContainer, #
 }
 
 #roundRestDropdownContainer {
-    margin-left: 1.7em;
+    margin-left: 1.8em;
 }
 
-.plus-minus {
-    margin-bottom: 1em;
-}
+
 
 
 

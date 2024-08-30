@@ -7,7 +7,7 @@ document.querySelectorAll('button').forEach(button => {
 });
 
 document.getElementById('pink').addEventListener('click', () => {
-    document.documentElement.style.setProperty('--color1', '#ff3eab');
+    document.documentElement.style.setProperty('--color1', '#ff079e');
     document.documentElement.style.setProperty('--color2', '#ffb7d8');
     document.documentElement.style.setProperty('--color3', '#fff4f8');
     const textContent = document.getElementById('workOrRest').textContent;
@@ -19,7 +19,7 @@ document.getElementById('pink').addEventListener('click', () => {
 })
 
 document.getElementById('blue').addEventListener('click', () => {
-    document.documentElement.style.setProperty('--color1', 'royalblue');
+    document.documentElement.style.setProperty('--color1', '#124ce4');
     document.documentElement.style.setProperty('--color2', '#a3b8ef');
     document.documentElement.style.setProperty('--color3', '#f1f4ff');
     const textContent = document.getElementById('workOrRest').textContent;
@@ -89,7 +89,7 @@ function showContent(content) {
         flexContainer.classList.add('portrait-mode');
         together = true;
     }
-    document.getElementById('buttons').style.display = 'none';
+    document.getElementById('homeButtons').style.display = 'none';
 }
 
 function createNumberDropdown(min, max) {
