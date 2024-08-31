@@ -232,16 +232,16 @@ input {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    text-align: center;
 }
 
 #currentExerciseContainer {
-    font-size: clamp(40px, 5vw, 100vw);
+    font-size: clamp(40px, 5vw, 20vw);
     font-weight: bold;
 }
 
-
 #nextExerciseContainer {
-    font-size: clamp(30px, 3.5vw, 100vw);
+    font-size: clamp(30px, 3.5vw, 10vw);
     font-weight: bold;
     color: var(--color2);
 }

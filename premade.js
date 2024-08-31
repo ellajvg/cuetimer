@@ -22,7 +22,6 @@ document.getElementById('menuBtn').addEventListener('mouseenter', () => {
     }
 });
 
-
 document.getElementById('menuContent').addEventListener('mouseleave', () => {
     const menu= document.getElementById('menuContent');
     menu.style.display = 'none';

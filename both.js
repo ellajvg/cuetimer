@@ -78,6 +78,7 @@ function showContent(content) {
         document.getElementById('timerStartBtn').style.display = 'block';
     } else if (content === 'cues') {
         document.getElementById(content).style.display = 'block';
+        document.getElementById('cueSpecific').style.display = 'flex';
         document.getElementById('cuesStartBtn').style.display = 'block';
     } else {
         document.getElementById('cues').style.display = 'block';
@@ -87,7 +88,6 @@ function showContent(content) {
         document.getElementById('bothStartBtn').style.display = 'block';
         const flexContainer = document.querySelector('.flex-container');
         flexContainer.classList.add('portrait-mode');
-        together = true;
     }
     document.getElementById('homeButtons').style.display = 'none';
 }
@@ -135,10 +135,10 @@ function startBothWorkout() {
         } else {
             window.alert(`Please add ${toAdd} ${addText} or remove ${toRemove} ${removeText}.`);
         }
-
     } else {
         const roundDropdown = document.getElementById('roundDropdownContainer').querySelector('select');
         roundDropdown.value = numberOfExercises/numberOfWorkPeriods;
+        together = true;
         startTimerWorkout(exercises[0].exercise);
     }
 }

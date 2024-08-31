@@ -117,7 +117,6 @@ function startCueWorkout() {
     createExerciseArray();
     numberOfExercises = countExercises(exercises);
     document.getElementById('cueProgress').textContent = completed + "/" + numberOfExercises;
-
     displayCurrentExercise(currentExerciseIndex);
     displayNextExercise(currentExerciseIndex);
 }
@@ -137,11 +136,11 @@ function displayCurrentExercise(index) {
             exerciseContainer.textContent = `Now: ${exercises[index].exercise} ${currSide}`;
         }
     } else {
+        console.log('here2');
         exerciseContainer.textContent = 'Workout complete!';
         document.getElementById('completeBtn').style.visibility = 'hidden';
         document.getElementById('cueProgress').style.visibility = 'hidden';
     }
-
 }
 
 function displayNextExercise(index) {
