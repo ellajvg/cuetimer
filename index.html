@@ -109,7 +109,19 @@
             <div id="workOrRest"></div>
             <div id="countdown" class="content"></div>
             <div id="progressContainer" class="progress-bar content">
-                <button id="pauseResumeBtn" class="content circle-btn">⏸</button>
+                <button id="pauseResumeBtn" class="content circle-btn">
+                    <svg id="pause" fill="currentColor" width="clamp(10px, 1vw, 100vw)" height="clamp(10px, 1vw, 100vw)"
+                         viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M5.92 24.096q0 0.832 0.576 1.408t1.44 0.608h4.032q0.832 0
+                        1.44-0.608t0.576-1.408v-16.16q0-0.832-0.576-1.44t-1.44-0.576h-4.032q-0.832 0-1.44 0.576t-0.576
+                        1.44v16.16zM18.016 24.096q0 0.832 0.608 1.408t1.408 0.608h4.032q0.832 0
+                        1.44-0.608t0.576-1.408v-16.16q0-0.832-0.576-1.44t-1.44-0.576h-4.032q-0.832 0-1.408 0.576t-0.608 1.44v16.16z"></path>
+                    </svg>
+                    <svg id="play" width="clamp(10px, 1vw, 100vw)" height="clamp(10px, 1vw, 100vw)" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M8.286 3.407A1.5 1.5 0 0 0 6 4.684v14.632a1.5 1.5 0 0 0 2.286 1.277l11.888-7.316a1.5 1.5
+                        0 0 0 0-2.555L8.286 3.407z" fill="#000000"/>
+                    </svg>
+                </button>
                 <div id="myProgress">
                     <div id="myBar"></div>
                 </div>

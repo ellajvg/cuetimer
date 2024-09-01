@@ -56,8 +56,8 @@ document.addEventListener('DOMContentLoaded', () => {
         document.documentElement.style.setProperty('--color1', '#ff3eab');
         document.documentElement.style.setProperty('--color2', '#ffb7d8');
         document.documentElement.style.setProperty('--color3', '#fff4f8');
-    } else if (savedColor === 'royalblue') {
-        document.documentElement.style.setProperty('--color1', 'royalblue');
+    } else if (savedColor === '#124ce4') {
+        document.documentElement.style.setProperty('--color1', '#124ce4');
         document.documentElement.style.setProperty('--color2', '#a3b8ef');
         document.documentElement.style.setProperty('--color3', '#f1f4ff');
     }

@@ -116,7 +116,6 @@ function createPeriodArray() {
 }
 
 function startTimerWorkout(exercise) {
-    document.getElementById('menu').style.display = 'none';
     document.getElementById('currentExerciseContainer').style.display = 'none';
     document.getElementById('nextExerciseContainer').style.display = 'none';
 
@@ -153,6 +152,7 @@ function startTimerWorkout(exercise) {
 
     startNextInterval(5);
     setTimeout(() => {
+        document.getElementById('menu').style.display = 'none';
         document.getElementById('cues').style.display = 'none';
         document.getElementById('preTimer').style.display = 'none';
         document.getElementById('progressContainer').style.display = 'flex';
@@ -167,11 +167,13 @@ function startTimerWorkout(exercise) {
     document.getElementById('pauseResumeBtn').addEventListener('click', function() {
         if (isPaused) {
             isPaused = false;
-            this.textContent = "⏸";
+            document.getElementById('play').style.display = 'none';
+            document.getElementById('pause').style.display = 'inline-block';
             startNextInterval(remainingTime);
         } else {
             isPaused = true;
-            this.textContent = "⏵";
+            document.getElementById('pause').style.display = 'none';
+            document.getElementById('play').style.display = 'inline-block';
             clearInterval(interval);
         }
     });

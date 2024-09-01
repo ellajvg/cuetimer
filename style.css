@@ -143,7 +143,7 @@ button:hover {
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 90vh;
+    min-height: 80vh;
     gap: 5vw;
 }
 
@@ -189,6 +189,19 @@ button:hover {
 
 .circle-btn:hover {
     box-shadow: var(--color1) 0.07em 0.2em 0.1em, var(--color2) 0 0 0 inset;
+}
+
+#pauseResumeBtn {
+    padding-right: 0.5em;
+    padding-left: 0.5em;
+}
+
+#play {
+    display: none;
+}
+
+#pause {
+    display: inline-block;
 }
 
 #timerScreen {
