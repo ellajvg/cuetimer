@@ -23,7 +23,6 @@ function addWork() {
         head.textContent = 'Work';
 
     } else {
-        console.log('here');
         tbody.rows[0].querySelector('th').textContent = 'Work period ' + 1;
 
         head.textContent = 'Work period ' + exercise;
@@ -197,7 +196,9 @@ function startTimerWorkout(exercise) {
                     width += (100/totalTime);
                     progress.style.width = width + "%";
                     let roundedWidth = Math.round(width);
-                    document.getElementById('progressLabel').textContent = roundedWidth + "%";
+                    if (roundedWidth !== 100) {
+                        document.getElementById('progressLabel').textContent = roundedWidth + "%";
+                    }
                 }, 1000);
             }
 
@@ -214,11 +215,16 @@ function startTimerWorkout(exercise) {
                 if (timer === 3 || timer === 2 || timer === 1) {
                     let sound = document.getElementById('countdownSound');
                     sound.volume = 0.1;
-                    sound.currentTime = 0; // Restart sound from the beginning
+                    sound.currentTime = 0;
                     sound.play();
                 }
 
                 if (--timer < 1 && !isPaused) {
+                    setTimeout(() => { //accounts for color change T-1 before timer changes
+                        color1 = rootStyles.getPropertyValue('--color1');
+                        color2 = rootStyles.getPropertyValue('--color2');
+                    }, 1000);
+
                     workoutStarted = true;
                     clearInterval(interval);
 
@@ -322,6 +328,7 @@ function startTimerWorkout(exercise) {
                             const event = new CustomEvent('intervalStarted');
                             document.dispatchEvent(event);
                             display.textContent = "00:00";
+                            document.getElementById('progressLabel').textContent = 100 + "%";
                         }, 1000);
                     }
                 } else {

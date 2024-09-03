@@ -143,7 +143,7 @@ button:hover {
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 80vh;
+    min-height: 90vh;
     gap: 5vw;
 }
 
@@ -152,6 +152,7 @@ button:hover {
         padding-top: 6vh;
         padding-bottom: 8vh;
         flex-direction: column;
+        min-height: 80vh;
         gap: 4vh;
     }
 }

@@ -136,7 +136,6 @@ function displayCurrentExercise(index) {
             exerciseContainer.textContent = `Now: ${exercises[index].exercise} ${currSide}`;
         }
     } else {
-        console.log('here2');
         exerciseContainer.textContent = 'Workout complete!';
         document.getElementById('completeBtn').style.visibility = 'hidden';
         document.getElementById('cueProgress').style.visibility = 'hidden';

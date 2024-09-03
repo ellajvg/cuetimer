@@ -59,8 +59,8 @@ document.getElementById('gluteFin').addEventListener('click', () => {
     const tbody = table.querySelector('tbody');
     const rows = tbody.querySelectorAll('tr');
     const data = ['Full range GBs', '1 1/2 rep GBs', 'Full range GBs', '1 1/2 rep GBs', 'Full range GBs',
-        '1 1/2 rep GBs', '1/2 rep GBs', 'GB hold', '1/2 rep GBs', 'GB hold', '1/2 rep GBs', 'GB hold',
-        'Bridge abduction', 'Sitting abduction', 'Bridge abduction', 'Sitting abduction', 'Sitting abduction', 'Bridge abduction'];
+        '1 1/2 rep GBs', '1/2 rep GBs', 'GB hold', '1/2 rep GBs', 'GB hold', '1/2 rep GBs', 'GB hold', 'Bridge abduction',
+        'Sitting abduction', 'Bridge abduction', 'Sitting abduction', 'Bridge abduction', 'Sitting abduction'];
 
     deselect(rows, 0, 5);
     setCueExercise(rows, 0, 18, data)
