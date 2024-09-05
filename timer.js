@@ -28,7 +28,7 @@ function addWork() {
         head.textContent = 'Work period ' + exercise;
 
         document.getElementById('exerciseRestHeader').textContent = 'Rest (period)';
-        document.getElementById('restDropdownContainer').style.marginLeft = '46px';
+        document.getElementById('restDropdownContainer').style.marginLeft = '1.45em';
 
         document.getElementById('roundRestHeader').style.display = 'inline-block';
         document.getElementById('roundRestDropdownContainer').style.display = 'inline-block';
@@ -52,7 +52,7 @@ function removeWork() {
             tbody.rows[0].querySelector('th').textContent = 'Work';
 
             document.getElementById('exerciseRestHeader').textContent = 'Rest'
-            document.getElementById('restDropdownContainer').style.marginLeft = '42px';
+            document.getElementById('restDropdownContainer').style.marginLeft = '1.54em';
 
             document.getElementById('roundRestHeader').style.display = 'none';
             document.getElementById('roundRestDropdownContainer').style.display = 'none';

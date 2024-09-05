@@ -29,6 +29,8 @@ document.getElementById('menuContent').addEventListener('mouseleave', () => {
 });
 
 document.getElementById('gluteHam').addEventListener('click', () => {
+    addRows();
+
     const table = document.getElementById('tableContainer');
     const tbody = table.querySelector('tbody');
     const rows = tbody.querySelectorAll('tr');
@@ -93,6 +95,9 @@ document.getElementById('gluteFin').addEventListener('click', () => {
 });
 
 document.getElementById('chestTri').addEventListener('click', () => {
+    addRows();
+    addRows();
+
     const table = document.getElementById('tableContainer');
     const tbody = table.querySelector('tbody');
     const rows = tbody.querySelectorAll('tr');
@@ -108,6 +113,7 @@ document.getElementById('chestTri').addEventListener('click', () => {
 });
 
 document.getElementById('plankFin').addEventListener('click', () => {
+    addRows();
     addRows();
 
     const table = document.getElementById('tableContainer');
@@ -138,6 +144,8 @@ document.getElementById('plankFin').addEventListener('click', () => {
 });
 
 document.getElementById('quadCalf').addEventListener('click', () => {
+    addRows();
+
     const table = document.getElementById('tableContainer');
     const tbody = table.querySelector('tbody');
     const rows = tbody.querySelectorAll('tr');
@@ -160,6 +168,7 @@ document.getElementById('quadCalf').addEventListener('click', () => {
 });
 
 document.getElementById('legFin').addEventListener('click', () => {
+    addRows();
     addRows();
     addRows();
     addRows();
@@ -201,6 +210,8 @@ document.getElementById('legFin').addEventListener('click', () => {
 });
 
 document.getElementById('backBi').addEventListener('click', () => {
+    addRows();
+
     const table = document.getElementById('tableContainer');
     const tbody = table.querySelector('tbody');
     const rows = tbody.querySelectorAll('tr');
@@ -219,6 +230,7 @@ document.getElementById('backBi').addEventListener('click', () => {
 });
 
 document.getElementById('hollowFin').addEventListener('click', () => {
+    addRows();
     addRows();
 
     const table = document.getElementById('tableContainer');
