@@ -144,16 +144,14 @@ button:hover {
     justify-content: center;
     align-items: center;
     min-height: 90vh;
-    gap: 5vw;
+    gap: 5vh;
 }
 
 @media (orientation: portrait), (max-width: 700px) {
     .flex-container.portrait-mode {
-        padding-top: 6vh;
-        padding-bottom: 8vh;
         flex-direction: column;
-        min-height: 80vh;
-        gap: 4vh;
+        padding-top: 5vh;
+        padding-bottom: 11vh;
     }
 }
 
