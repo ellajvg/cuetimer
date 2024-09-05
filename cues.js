@@ -106,8 +106,8 @@ function startCueWorkout() {
         document.getElementById('preCues').style.display = 'none';
         document.getElementById('cueScreen').style.display = 'block';
         document.getElementById('cueScreen').style.minWidth = 'clamp(40vw, 850px, 80vw)';
-        document.getElementById('cueText').style.gap = '9vh';
-        document.getElementById('currentExerciseContainer').style.marginTop = '4vh';
+        document.getElementById('cueText').style.gap = '6vmin';
+        document.getElementById('currentExerciseContainer').style.marginTop = '4vw';
         document.getElementById('nextExerciseContainer').style.minHeight = '2em';
         document.getElementById('completeBtn').style.display = 'block';
         document.getElementById('previousExerciseBtn').style.display = 'block';
