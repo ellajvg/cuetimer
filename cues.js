@@ -96,6 +96,7 @@ function createExerciseArray() {
 
 function startCueWorkout() {
     document.getElementById('menu').style.display = 'none';
+    document.getElementById('startBtn').style.display = 'none';
 
     exercises = [];
     repeatIndex = 1;

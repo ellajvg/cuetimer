@@ -118,6 +118,7 @@ function startTimerWorkout(exercise) {
     document.getElementById('currentExerciseContainer').style.display = 'none';
     document.getElementById('nextExerciseContainer').style.display = 'none';
 
+
     const periods = createPeriodArray();
     const rounds = parseInt(document.getElementById('roundDropdownContainer').querySelector('select').value, 10);
     const exerciseRest = parseInt(document.getElementById('restDropdownContainer').querySelector('select').value, 10);
@@ -151,6 +152,7 @@ function startTimerWorkout(exercise) {
 
     startNextInterval(5);
     setTimeout(() => {
+        document.getElementById('startBtn').style.display = 'none';
         document.getElementById('menu').style.display = 'none';
         document.getElementById('cues').style.display = 'none';
         document.getElementById('preTimer').style.display = 'none';
