@@ -267,17 +267,20 @@ input {
 #cueProgress {
     font-size: clamp(18px, 2vw, 100vw);
     font-weight: bold;
-    margin-top: 1em;
+
 }
 
 #cueSpecific {
     display: flex;
     justify-content: space-between;
+    align-items: center;
+    margin-top: 1em;
 }
 
 .prev-comp {
-    font-size: clamp(10px, 30px, 5vw);
-    padding: 0 0.4em 0.2em;
+    font-size: clamp(10px, 35px, 4vw);
+    height: 1.6em;
+    padding: 0 0.6em 0.2em;
     box-shadow: var(--color1) 0.07em 0.2em 0.3em, var(--color2) 0 -0.07em 0 inset;
 }
 
