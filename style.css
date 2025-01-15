@@ -19,7 +19,7 @@ button {
     background-color: var(--color3);
     border-radius: 0.5em;
     border-width: 0;
-    box-shadow: var(--color1) 0.2em 0.3em 0.6em, var(--color2) -0.05em -0.2em 0 inset;
+    box-shadow: var(--color1) 0.2em 0.3em 0.6em, var(--color2) -0.07em -0.2em 0 inset;
     color: var(--color1);
     cursor: pointer;
     font-family: "Webstorm mono",monospace;
@@ -93,12 +93,13 @@ button:hover {
 #menuBtn {
     background: transparent;
     box-shadow: none;
+    transition: transform 0.3s ease;
 }
 
 #menuBtn:hover {
     font-weight: bold;
     box-shadow: none;
-    transform: scale(1.15);
+    transform: scale(1.1);
 }
 
 #menuContent {
@@ -137,7 +138,7 @@ button:hover {
 .premadeWs:hover {
     font-weight: bold;
     box-shadow: none;
-    transform: scale(1.05);
+    transform: scale(1.03);
 }
 
 /*TIMER & CUES*/
@@ -178,18 +179,19 @@ button:hover {
 
 .start, #backBtn {
     font-size: clamp(10px, 20px, 3vh);
-    padding: 1em;
+    padding: 0.9em 1em;
 }
 
 .circle-btn {
     font-size: clamp(14px, 1.2vw, 100vw);
     padding: 0.3em 0.6em;
     border-radius: 6em;
-    box-shadow: var(--color1) 0.07em 0.2em 0.3em, var(--color2) 0 -0.07em 0 inset;
+    box-shadow: var(--color1) 0.07em 0.2em 0.3em, var(--color2) 0 -0.1em 0 inset;
 }
 
 .circle-btn:hover {
-    box-shadow: var(--color1) 0.07em 0.2em 0.1em, var(--color2) 0 0 0 inset;
+    box-shadow: var(--color1) 0.07em 0.2em 0.1em, var(--color2) 0 -0.05em 0 inset;
+    transform: translateY(0.1em);
 }
 
 #pauseResumeBtn {
@@ -281,11 +283,13 @@ input {
     font-size: clamp(10px, 35px, 4vw);
     height: 1.6em;
     padding: 0 0.6em 0.2em;
-    box-shadow: var(--color1) 0.07em 0.2em 0.3em, var(--color2) 0 -0.07em 0 inset;
+    border-radius: 0.4em;
+    box-shadow: var(--color1) 0.07em 0.2em 0.3em, var(--color2) -0.05em -0.1em 0 inset;
 }
 
 .prev-comp:hover {
-    box-shadow: var(--color1) 0.07em 0.2em 0.15em, var(--color2) 0 0 0 inset;
+    box-shadow: var(--color1) 0.07em 0.2em 0.15em, var(--color2) 0 -0.05em 0 inset;
+    transform: translateY(0.1em);
 }
 
 /*TIMER ONLY*/
